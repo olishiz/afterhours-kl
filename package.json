@@ -1,17 +1,17 @@
 {
-  "name": "ai-website-clone-template",
+  "name": "afterhours-kl",
   "version": "0.6.1",
   "private": true,
-  "description": "Clone any website into a clean, modern Next.js codebase using AI coding agents",
+  "description": "A curated nightlife guide for Kuala Lumpur and Selangor, inspired by Luma.",
   "author": "JCodesMore",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JCodesMore/ai-website-cloner-template.git"
+    "url": "https://github.com/olishiz/afterhours-kl.git"
   },
-  "homepage": "https://github.com/JCodesMore/ai-website-cloner-template",
+  "homepage": "https://github.com/olishiz/afterhours-kl",
   "bugs": {
-    "url": "https://github.com/JCodesMore/ai-website-cloner-template/issues"
+    "url": "https://github.com/olishiz/afterhours-kl/issues"
   },
   "keywords": [
     "claude-code",
@@ -24,7 +24,7 @@
     "shadcn-ui"
   ],
   "engines": {
-    "node": ">=24"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "next dev",
@@ -32,14 +32,16 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "check": "npm run lint && npm run typecheck && npm run build"
+    "check": "npm run lint && npm run typecheck && npm run build",
+    "scrape:events": "node scripts/scrape-events.mjs",
+    "test:scraper": "node --test scripts/scrape-events.test.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.6.0",
-    "next": "16.3.5",
+    "next": "^16.4.2",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "shadcn": "^4.1.0",
@@ -52,7 +54,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.3.5",
+    "eslint-config-next": "^16.4.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

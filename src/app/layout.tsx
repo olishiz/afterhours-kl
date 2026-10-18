@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "./afterhours.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +14,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Website Clone",
-  description: "Pixel-perfect website clone",
+  title: "Afterhours — Kuala Lumpur, after dark",
+  description: "Find your next great night. Discover live music, DJ sets, club nights and late-night culture across Kuala Lumpur and Selangor, with links to the original listings.",
+  applicationName: "Afterhours",
+  icons: { icon: "/icon.svg", apple: "/icon.svg" },
+  openGraph: {
+    title: "Afterhours — Kuala Lumpur, after dark",
+    description: "Good music. Great company. Your guide to nights worth going out for in KL and Selangor.",
+    locale: "en_MY",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -25,7 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

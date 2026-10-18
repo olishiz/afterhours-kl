@@ -32,5 +32,8 @@ jobs:
       - name: Type check
         run: npm run typecheck
 
+      - name: Scraper tests
+        run: npm run test:scraper
+
       - name: Build
         run: npm run build

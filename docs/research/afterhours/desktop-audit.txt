@@ -1,0 +1,6 @@
+### Result
+{"viewport":1280,"scrollWidth":1280,"bodyBg":"rgb(16, 16, 16)","articleCount":12,"brokenImages":["https://cdn.cloudjoi.com/149572/conversions/cover-6938-melissa-indot-the-80s-60-web.jpg","https://cdn.cloudjoi.com/110929/conversions/cover-4397-kldr-jason-leong-in-laughing-memory-2026-comedy-special-web.jpg","https://cdn.cloudjoi.com/145675/conversions/cover-7031-jujutsu-kaisen-in-concert-web.jpg"],"overflow":[]}
+### Ran Playwright code
+```js
+await (async page => { await page.setViewportSize({width:1280,height:800}); await page.screenshot({path:'docs/research/afterhours/desktop-1280-full.png',fullPage:true}); return await page.evaluate(() => ({viewport:innerWidth,scrollWidth:document.documentElement.scrollWidth,bodyBg:getComputedStyle(document.body).backgroundColor,articleCount:document.querySelectorAll('article').length,brokenImages:[...document.images].filter(i=>!i.complete||i.naturalWidth===0).map(i=>i.src),overflow:[...document.querySelectorAll('body *')].filter(e=>{let r=e.getBoundingClientRect();return r.width>0&&(r.right>innerWidth+1||r.left< -1)}).slice(0,12).map(e=>({tag:e.tagName,cls:e.className}))})); })(page);
+```

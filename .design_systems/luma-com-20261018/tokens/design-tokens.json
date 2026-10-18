@@ -1,0 +1,31 @@
+{
+  "$description": "Compact Luma token handoff. Typography and geometry measured live; dark colors read from authored CSS. Not a full automated export.",
+  "color": {
+    "background": {"$type":"color","$value":"#151515"},
+    "surface": {"$type":"color","$value":"#232323"},
+    "surfaceRaised": {"$type":"color","$value":"#353535"},
+    "text": {"$type":"color","$value":"#ffffff"},
+    "textSecondary": {"$type":"color","$value":"#d4d4d4"},
+    "textMuted": {"$type":"color","$value":"#959595"},
+    "card": {"$type":"color","$value":"#ffffff0a"},
+    "border": {"$type":"color","$value":"#ffffff0a"},
+    "borderHover": {"$type":"color","$value":"#ffffff29"}
+  },
+  "fontWeight": {
+    "regular": {"$type":"fontWeight","$value":400},
+    "medium": {"$type":"fontWeight","$value":500},
+    "bold": {"$type":"fontWeight","$value":600}
+  },
+  "dimension": {
+    "mobileInset": {"$type":"dimension","$value":"16px"},
+    "contentWidth": {"$type":"dimension","$value":"788px"},
+    "eventImage": {"$type":"dimension","$value":"80px"},
+    "eventGap": {"$type":"dimension","$value":"16px"},
+    "smallActionHeight": {"$type":"dimension","$value":"30px"},
+    "actionHeight": {"$type":"dimension","$value":"38px"}
+  },
+  "motion": {
+    "fastDuration": {"$type":"duration","$value":"200ms"},
+    "easing": {"$type":"cubicBezier","$value":[0.4,0,0.2,1]}
+  }
+}
