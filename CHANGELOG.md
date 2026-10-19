@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Count the README token badge in CI so it reflects the current default branch instead of a stale hosted count.
 
+### Changed
+- Rebuild the city page to follow the live Luma Kuala Lumpur calendar, including the hero, timeline, detail sheet, and light/dark theme.
+- Apply `basePath` only when `PAGES_BASE_PATH` is set, so GitHub Pages keeps `/afterhours-kl` and a root host does not.
+
 ## [0.6.1] - 2026-10-05
 
 ### Changed
