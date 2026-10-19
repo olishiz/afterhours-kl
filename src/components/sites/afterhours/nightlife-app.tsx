@@ -8,6 +8,17 @@ import { events, lastUpdated, sources, type NightEvent } from "@/lib/events";
 type Tab = "Discover" | "Calendar" | "Places" | "Saved";
 type Period = "Upcoming" | "Tonight" | "This weekend" | "This month" | "Past nights";
 const timeZone = "Asia/Kuala_Lumpur";
+const serverNow = "1970-01-01T00:00:00.000Z";
+let clientNow = "";
+function subscribeNow(onChange: () => void) {
+  const id = window.setInterval(() => { clientNow = new Date().toISOString(); onChange(); }, 60_000);
+  return () => window.clearInterval(id);
+}
+function getClientNow() {
+  if (!clientNow) clientNow = new Date().toISOString();
+  return clientNow;
+}
+function getServerNow() { return serverNow; }
 const shortDate = (date: string) => new Intl.DateTimeFormat("en-GB", { timeZone, day: "numeric", month: "short" }).format(new Date(date));
 const fullDate = (date: string) => new Intl.DateTimeFormat("en-GB", { timeZone, weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(new Date(date));
 const time = (date: string) => new Intl.DateTimeFormat("en-US", { timeZone, hour: "numeric", minute: "2-digit" }).format(new Date(date));
@@ -70,7 +81,7 @@ function Modal({ children, onClose, wide = false }: { children: React.ReactNode;
   return <dialog ref={ref} aria-label={wide ? "Event details" : "About Afterhours and sources"} className={`modal ${wide ? "modal-wide" : ""}`} onCancel={onClose} onClick={event => { if (event.target === event.currentTarget) onClose(); }}><button className="modal-close icon-button" aria-label="Close dialog" onClick={onClose}><X size={19} /></button>{children}</dialog>;
 }
 
-export function NightlifeApp({ now }: { now: string }) {
+export function NightlifeApp() {
   const [tab, setTab] = useState<Tab>("Discover");
   const [period, setPeriod] = useState<Period>("Upcoming");
   const [category, setCategory] = useState("All vibes");
@@ -86,6 +97,7 @@ export function NightlifeApp({ now }: { now: string }) {
   const [limit, setLimit] = useState(12);
   const rawSaved = useSyncExternalStore(subscribeSaved, getSaved, () => "[]");
   const saved: string[] = useMemo(() => { try { const parsed: unknown = JSON.parse(rawSaved); return Array.isArray(parsed) ? parsed.filter((id): id is string => typeof id === "string") : []; } catch { return []; } }, [rawSaved]);
+  const now = useSyncExternalStore(subscribeNow, getClientNow, getServerNow);
   const current = useMemo(() => new Date(now), [now]);
   const upcoming = useMemo(() => events.filter(event => event.kind === "event" && inPeriod(event, "Upcoming", current)).sort((a, b) => (a.startAt || "").localeCompare(b.startAt || "")), [current]);
   const featured = upcoming.find(event => event.featured && event.category === "Club nights") || upcoming.find(event => event.featured) || upcoming[0] || events[0];
