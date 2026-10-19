@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "Afterhours — Kuala Lumpur, after dark",
   description: "Find your next great night. Discover live music, DJ sets, club nights and late-night culture across Kuala Lumpur and Selangor, with links to the original listings.",
   applicationName: "Afterhours",
-  icons: { icon: "/icon.svg", apple: "/icon.svg" },
+  icons: { icon: "/afterhours-kl/icon.svg", apple: "/afterhours-kl/icon.svg" },
   openGraph: {
     title: "Afterhours — Kuala Lumpur, after dark",
     description: "Good music. Great company. Your guide to nights worth going out for in KL and Selangor.",
