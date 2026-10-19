@@ -1,6 +1,6 @@
 # KL / Selangor event data
 
-The app includes a real public-source snapshot, verified on 18 October 2026 Malaysia time. It is a curated guide, not a claim to cover every nightlife event. The successful live refresh returned **55 dated event sessions** and **8 venue directory entries** from **61 public pages**, including **44 future sessions** at refresh time. All requests succeeded. The JSON snapshot is the authoritative current inventory.
+The app includes a real public-source snapshot. It is a curated nightlife guide, not a claim to cover every event in the region. The JSON snapshot is the authoritative current inventory. Past events are removed on each refresh, and the page hides anything that has already ended.
 
 ## Sources and evidence
 
@@ -8,7 +8,7 @@ The app includes a real public-source snapshot, verified on 18 October 2026 Mala
 | --- | --- | --- | --- |
 | CloudJoi | https://www.cloudjoi.com/ and https://www.cloudjoi.com/org/bobokl | Public `__NEXT_DATA__` embedded in HTML; each event's public `event.timings` data provides actual individual performances | Evening music, concerts and comedy; only venue addresses in Kuala Lumpur or Selangor |
 | Where to Party | https://whereto.party/in/kuala-lumpur | Public event links and Schema.org Event JSON-LD on each event page | Organizer-submitted dance, club and Halloween listings |
-| CloudJoi venue directory | https://www.cloudjoi.com/venues/bobokl and seven other explicitly listed public venue pages | Public venue data embedded in page HTML | Venue discovery, with `kind: "venue"`, no showtime or implied recurring programme |
+| Luma Kuala Lumpur | https://luma.com/kuala-lumpur | Place id from the public city page, then `https://api.luma.com/discover/get-paginated-events` | Nightlife listings only. Tech meetups, workshops and daytime sessions are dropped. Covers and URLs come from each event. |
 
 Representative verified listings include:
 
@@ -22,7 +22,7 @@ Each record preserves its public source URL, source name, and true `verifiedAt` 
 
 ## Access decisions
 
-`https://www.cloudjoi.com/robots.txt` permits public pages and excludes `/api/`, account, purchase and preview paths. `https://whereto.party/robots.txt` permits public event pages and excludes API, admin and token paths. The scraper checks robots on every run before fetching pages and follows the longest matching rule. Explicit GPTBot and ChatGPT-User exclusions are honored as well as the scraper's own user agent. Requests are sequential, spaced at least 650ms per host, limited to 80 event pages per adapter, and time out after 25 seconds. Redirects outside the allowlist are never followed.
+`https://www.cloudjoi.com/robots.txt` permits public pages and excludes `/api/`, account, purchase and preview paths. `https://whereto.party/robots.txt` permits public event pages and excludes API, admin and token paths. `https://luma.com/robots.txt` does not disallow `/kuala-lumpur`. `https://api.luma.com/robots.txt` and `https://api.lu.ma/robots.txt` disallow only `/insights/` for all user agents. The scraper uses `api.luma.com`, which is the host the city page calls, and does not request `/insights/`. It checks robots on every run before fetching and follows the longest matching rule. Explicit GPTBot and ChatGPT-User exclusions are honored as well as the scraper's own user agent. Requests are sequential, spaced at least 650ms per host, limited to 80 event pages per adapter, and time out after 25 seconds. Redirects outside the allowlist are never followed. No Luma login, API key, or bot-challenge bypass is used.
 
 Resident Advisor was researched as a potential source but is **excluded from automated ingestion** because `https://ra.co/robots.txt` explicitly disallows GPTBot and ChatGPT-User. No RA private API, access challenge, login, social feed, or restricted endpoint is used. Instagram-only announcements cannot be comprehensively included without organizer permission or an approved feed.
 
@@ -30,15 +30,16 @@ Resident Advisor was researched as a potential source but is **excluded from aut
 
 - Source years and dates are retained exactly. Past shows are never relabeled as future events.
 - CloudJoi's individual published session timestamps are used instead of turning a multi-day range into a fabricated daily recurrence.
-- Timezone-free timestamps on the Malaysia city page receive `+08:00`. Existing offsets are preserved. Date-only metadata does not establish a showtime and is skipped.
+- Timezone-free timestamps on the Malaysia city page receive `+08:00`. Existing offsets are preserved. Date-only metadata does not establish a showtime and is skipped. Seconds are zeroed, so a published time such as 20:30:57 is stored as 20:30:00.
 - A source end date earlier than its start is discarded rather than guessed. Overnight end times are retained when explicitly published.
 - Source venue city, state and address determine geography. Unknown locations, online events, venues outside KL / Selangor, and daytime performances before 17:00 are excluded.
 - Categories and genres are lightweight editorial classification based on the published title, description and metadata, not a claimed organizer taxonomy.
 - Empty descriptions or short navigation-only fragments such as “See Above for Seating Details” receive a deterministic factual summary using only the existing category, venue, area, and source showtime. Informative short and non-English descriptions are preserved. No programme details are invented.
-- Deduplication uses a normalized title, venue and start minute; distinct performances remain distinct. The ticket seller wins if two sources supply the same session.
-- Dated records are retained for 90 days after they finish and at most 370 days into the future. The app's future/past filters should compare actual dates dynamically.
+- Deduplication uses a normalized title, venue and Malaysia calendar date. The ticket seller wins if two sources supply the same show. Different dates stay separate.
+- An event is kept only while it has not ended. A published end time is used when it is after the start. Otherwise the listing stays for six hours after the start, then drops. Events more than 370 days ahead are skipped. The page applies the same rule again at build and when it is opened.
+- Titles that are workshops, tech meetups, classes or similar non-nightlife programmes are dropped. Luma's city calendar also requires a nightlife signal in the title, such as a gig, club night, party, comedy show or evening screening.
 - On a partial source outage, existing records from that source may be retained with their original verification dates. Source status becomes `partial` or `unavailable`. A completely empty refresh fails without overwriting the previous snapshot.
-- Venue entries have `startAt: null`, `price: null`, and `kind: "venue"`; they are not presented as scheduled events or recurring residencies.
+- Venue directory pages are not published. The guide is a list of dated events. `normalizeVenue` remains covered by tests and does not invent a showtime.
 
 ## Refresh and validation
 
@@ -51,7 +52,7 @@ node scripts/scrape-events.mjs
 
 Use `--dry-run` to fetch and validate without writing. No third-party packages, credentials, browser cookies or API keys are needed.
 
-`.github/workflows/refresh-events.yml` runs daily at **09:15 MYT**, or manually through `workflow_dispatch`. It verifies the parser rules, refreshes `src/data/events.json`, and commits changed snapshots using the repository's GitHub Actions token. GitHub schedules can be delayed. GitHub Actions must be enabled and permitted to write repository contents; branch protection may require an approved alternate publishing flow. A connected Vercel project uses the committed snapshot at build time. There is no browser-triggered scraping endpoint.
+`.github/workflows/refresh-events.yml` runs daily at **09:15 MYT**, or manually through `workflow_dispatch`. It verifies the parser rules, refreshes `src/data/events.json`, and commits changed snapshots using the repository's GitHub Actions token. GitHub schedules can be delayed. GitHub Actions must be enabled and permitted to write repository contents; branch protection may require an approved alternate publishing flow. GitHub Pages builds the committed snapshot. There is no browser-triggered scraping endpoint and no Vercel project.
 
 Tests cover robot exclusions, source-year preservation, timezone handling, geography, multi-session events, daytime exclusion, cancelled shows, invalid source end dates, deduplication, same-origin URL discovery, and venue records without invented dates.
 

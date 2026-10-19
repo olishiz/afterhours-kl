@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { robotAllows, toMalaysiaDate, classifyLocation, cleanEventDescription, normalizeCloudjoi, normalizeVenue, normalizeJsonLd, dedupeEvents, discoverLinks, hasEventMetadata, retainFailedRecords } from "./scrape-events.mjs";
+import { robotAllows, toMalaysiaDate, classifyLocation, cleanEventDescription, normalizeCloudjoi, normalizeVenue, normalizeJsonLd, normalizeLuma, lumaPlaceId, lumaPrice, dedupeEvents, discoverLinks, hasEventMetadata, retainFailedRecords, isCurrentEvent, isNightlife, isLumaNightlife } from "./scrape-events.mjs";
 
 test("robots follows longest path and explicit AI exclusions", () => {
   const rules = "User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /shows/*/preview\nAllow: /api/public/";
@@ -9,11 +9,15 @@ test("robots follows longest path and explicit AI exclusions", () => {
   assert.equal(robotAllows(rules, "/api/public/one"), true);
   assert.equal(robotAllows(rules, "/shows/one/preview"), false);
   assert.equal(robotAllows("User-agent: *\nAllow: /\nUser-agent: GPTBot\nDisallow: /", "/events"), false);
+  assert.equal(robotAllows("User-agent: *\nDisallow: /insights/\n", "/discover/get-paginated-events"), true);
+  assert.equal(robotAllows("User-agent: *\nDisallow: /insights/\n", "/insights/luma-event"), false);
 });
 
 test("dates preserve source years and normalize only timezone-free showtimes", () => {
   assert.equal(toMalaysiaDate("2024-03-16T21:30:00"), "2024-03-16T21:30:00+08:00");
   assert.equal(toMalaysiaDate("2026-10-22T13:30:00Z"), "2026-10-22T13:30:00Z");
+  assert.equal(toMalaysiaDate("2026-10-01T20:30:57+08:00"), "2026-10-01T20:30:00+08:00");
+  assert.equal(toMalaysiaDate("2026-10-19T10:00:00.000Z"), "2026-10-19T10:00:00Z");
   assert.equal(toMalaysiaDate("2026-10-22"), null);
   assert.equal(toMalaysiaDate("not a date"), null);
 });
@@ -73,6 +77,50 @@ test("venue records do not invent a residency, ticket price, or showtime", () =>
   assert.equal(record.url, "https://www.cloudjoi.com/venues/bobokl");
 });
 
+test("nightlife filter keeps gigs and drops workshops and tech meetups", () => {
+  assert.equal(isNightlife("Janelle Arnelia", "", "Live music"), true);
+  assert.equal(isNightlife("Synth Workshop", "Bring a laptop", "Live music"), false);
+  assert.equal(isLumaNightlife("DevDay Exchange Community: Kuala Lumpur"), false);
+  assert.equal(isLumaNightlife("KL BACKSTROKE Private Screening"), true);
+  assert.equal(isLumaNightlife("A Spooky Social"), false);
+  assert.equal(isLumaNightlife("Builder Sandbox Session"), false);
+});
+
+test("Luma city events keep their cover, price and public URL", () => {
+  const entry = {
+    ticket_info: { is_free: false, price: { cents: 3000, currency: "myr" }, max_price: { cents: 4000, currency: "myr" } },
+    event: {
+      name: "Jazz night",
+      url: "jazz-night",
+      start_at: "2026-10-21T12:30:57.000Z",
+      end_at: "2026-10-21T15:00:00.000Z",
+      location_type: "offline",
+      visibility: "public",
+      cover_url: "https://images.lumacdn.com/uploads/example.jpg",
+      geo_address_info: { address: "BoboKL", city: "Kuala Lumpur", region: "Kuala Lumpur", full_address: "BoboKL, Bangsar, Kuala Lumpur" },
+    },
+  };
+  const events = normalizeLuma(entry, "2026-10-19T00:00:00Z");
+  assert.equal(events.length, 1);
+  assert.equal(events[0].startAt, "2026-10-21T12:30:00Z");
+  assert.equal(events[0].price, "From RM30");
+  assert.equal(events[0].url, "https://luma.com/jazz-night");
+  assert.equal(events[0].image, "https://images.lumacdn.com/uploads/example.jpg");
+  assert.equal(events[0].area, "Bangsar");
+  assert.equal(normalizeLuma({ event: { ...entry.event, name: "DevDay Exchange" } }, "2026-10-19T00:00:00Z").length, 0);
+  assert.equal(lumaPrice({ is_free: true }), "Free");
+  assert.equal(lumaPlaceId('<script id="__NEXT_DATA__">{"props":{"pageProps":{"initialData":{"data":{"place":{"slug":"kuala-lumpur","api_id":"discplace-abc"}}}}}}</script>'), "discplace-abc");
+  assert.equal(lumaPlaceId("<html></html>"), null);
+});
+
+test("past events and venue records are not current listings", () => {
+  const now = Date.parse("2026-10-19T01:15:00Z");
+  assert.equal(isCurrentEvent({ kind: "event", startAt: "2026-10-19T12:30:00+08:00" }, now), true);
+  assert.equal(isCurrentEvent({ kind: "event", startAt: "2026-10-18T21:00:00+08:00", endAt: "2026-10-18T23:00:00+08:00" }, now), false);
+  assert.equal(isCurrentEvent({ kind: "event", startAt: "2026-10-19T08:00:00+08:00" }, now), true);
+  assert.equal(isCurrentEvent({ kind: "venue", startAt: null }, now), false);
+});
+
 test("deduplication retains distinct sessions and prefers ticket seller", () => {
   const one = { title: "An Event", venue: "BoboKL", startAt: "2026-10-21T20:30:17+08:00", source: "Where to Party" };
   const duplicate = { ...one, title: "An event!", source: "CloudJoi", startAt: "2026-10-21T20:30:00+08:00" };
@@ -80,6 +128,11 @@ test("deduplication retains distinct sessions and prefers ticket seller", () => 
   const events = dedupeEvents([one, duplicate, another]);
   assert.equal(events.length, 2);
   assert.equal(events[0].source, "CloudJoi");
+  const sameNight = dedupeEvents([
+    { title: "An Event", venue: "BoboKL", startAt: "2026-10-21T22:00:00+08:00", source: "Luma" },
+    { title: "An Event", venue: "BoboKL", startAt: "2026-10-21T20:30:00+08:00", source: "Where to Party" },
+  ]);
+  assert.equal(sameNight.length, 1);
 });
 
 test("discovery is limited to allowlisted source paths and same origin", () => {

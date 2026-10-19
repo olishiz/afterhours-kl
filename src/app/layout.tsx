@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import "./afterhours.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,13 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Afterhours — Kuala Lumpur, after dark",
-  description: "Find your next great night. Discover live music, DJ sets, club nights and late-night culture across Kuala Lumpur and Selangor, with links to the original listings.",
-  applicationName: "Afterhours",
-  icons: { icon: "/afterhours-kl/icon.svg", apple: "/afterhours-kl/icon.svg" },
+  title: "afterhours — Kuala Lumpur",
+  description: "Club nights, DJ sets, gigs and late nights in Kuala Lumpur and Selangor. Every listing links to its original source.",
+  applicationName: "afterhours",
+  icons: { icon: "/icon.svg", apple: "/icon.svg" },
   openGraph: {
-    title: "Afterhours — Kuala Lumpur, after dark",
-    description: "Good music. Great company. Your guide to nights worth going out for in KL and Selangor.",
+    title: "afterhours — Kuala Lumpur",
+    description: "A nightlife guide for Kuala Lumpur and Selangor, with times in MYT and links to the original listings.",
     locale: "en_MY",
     type: "website",
   },
@@ -36,7 +35,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full bg-[#101010] text-white">{children}</body>
     </html>
   );
 }

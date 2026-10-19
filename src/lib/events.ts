@@ -33,3 +33,13 @@ export interface EventSource {
 export const events: NightEvent[] = snapshot.events as NightEvent[];
 export const sources: EventSource[] = snapshot.sources;
 export const lastUpdated: string = snapshot.lastUpdated;
+
+const nightWindowMs = 6 * 60 * 60 * 1000;
+
+export function isUpcoming(event: NightEvent, now: Date) {
+  if (event.kind !== "event" || !event.startAt) return false;
+  const start = Date.parse(event.startAt);
+  if (!Number.isFinite(start)) return false;
+  const end = event.endAt ? Date.parse(event.endAt) : start + nightWindowMs;
+  return Number.isFinite(end) && end >= now.getTime();
+}
