@@ -15,5 +15,3 @@ Use Node 24. Run `npm ci`, then `npm run dev`. Open http://localhost:3000. No AP
 The initial snapshot contains 55 real dated sessions and eight venues, verified on 18 October 2026. Coverage is curated, not exhaustive.
 
 Read the [app guide](docs/AFTERHOURS.md), [data provenance](docs/research/events.md), and [Luma reference study](docs/research/luma/README.md).
-
-Deploy to Vercel with the Next.js preset and Node 24; no environment variables. Connect this GitHub repository for automatic rebuilds after the daily 09:15 MYT event refresh.
