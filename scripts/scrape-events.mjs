@@ -13,7 +13,7 @@ const destination = path.join(root, "src/data/events.json");
 const agent = "AfterhoursKL/1.0 (public event discovery; respects robots.txt)";
 const timeout = 25000;
 const maxPages = 80;
-const allowedHosts = new Set(["www.cloudjoi.com", "whereto.party"]);
+const allowedHosts = new Set(["www.cloudjoi.com", "whereto.party", "luma.com", "api.luma.com"]);
 const robotsCache = new Map();
 const requestTimes = new Map();
 
@@ -55,7 +55,45 @@ export function toMalaysiaDate(value) {
   if (value.length === 10) return null;
   const dated = /(?:Z|[+-]\d\d:\d\d)$/.test(value) ? value : `${value}+08:00`;
   if (!Number.isFinite(Date.parse(dated))) return null;
-  return dated;
+  // CloudJoi and similar feeds publish stray seconds (20:30:57). Keep the minute.
+  return dated.replace(/T(\d{2}:\d{2}):\d{2}(?:\.\d+)?/, "T$1:00");
+}
+
+export function malaysiaHour(iso) {
+  return Number(new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Kuala_Lumpur", hour: "2-digit", hourCycle: "h23" }).format(new Date(iso)));
+}
+
+export function isEvening(iso) {
+  const hour = malaysiaHour(iso);
+  return Number.isFinite(hour) && (hour >= 17 || hour < 5);
+}
+
+const nonNightlife = /workshop|masterclass|bootcamp|hackathon|\bconference\b|webinar|seminar|networking|meetup|devday|developer|\bstartup\b|founders?|certification|\byoga\b|wellness|meditation|journaling|shucking|tech talk|\bpanel\b|sandbox|coding|hack night|community exchange|get certified|mental health/i;
+const lumaNightlife = /\b(?:club|rave|rooftop|\bdj\b|techno|trance|disco|jazz|soul|funk|hip-?hop|electronic|festival|\bgig\b|concert|karaoke|cabaret|orchestra|recital|comedy|stand-?up|open mic|\bjoke\b|\bjokes\b|\bparty\b|nightlife|\brock\b|\bmetal\b|\bindie\b|\bband\b|\bedm\b|boogie|amapiano|vinyl|screening|film night|dj set)\b|喜剧|派对/i;
+
+export function isNightlife(title, description = "", category = "") {
+  return !nonNightlife.test(`${title} ${category} ${description}`.slice(0, 500));
+}
+
+export function isLumaNightlife(title, description = "") {
+  const text = `${title} ${description}`;
+  return isNightlife(title, description) && lumaNightlife.test(text);
+}
+
+export function eventDayKey(startAt) {
+  if (!startAt || !Number.isFinite(Date.parse(startAt))) return "undated";
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Kuala_Lumpur", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(startAt));
+}
+
+// Listings without an end time remain visible for six hours after they start.
+const nightWindowMs = 6 * 3600000;
+
+export function isCurrentEvent(event, now) {
+  if (!event || event.kind === "venue" || !event.startAt) return false;
+  const start = Date.parse(event.startAt);
+  if (!Number.isFinite(start)) return false;
+  const end = event.endAt ? Date.parse(event.endAt) : start + nightWindowMs;
+  return Number.isFinite(end) && end >= now;
 }
 
 export function robotAllows(robots, pathname, userAgent = agent) {
@@ -109,6 +147,19 @@ async function publicPage(url) {
   return response.text();
 }
 
+async function publicJson(url) {
+  const parsed = new URL(url);
+  if (parsed.protocol !== "https:" || !allowedHosts.has(parsed.hostname)) throw new Error("URL outside source allowlist");
+  if (!robotAllows(await getRobots(parsed.origin), parsed.pathname)) throw new Error("Excluded by robots.txt");
+  const remaining = 650 - (Date.now() - (requestTimes.get(parsed.origin) ?? 0));
+  if (remaining > 0) await new Promise(resolve => setTimeout(resolve, remaining));
+  requestTimes.set(parsed.origin, Date.now());
+  const response = await fetch(parsed, { headers: { "User-Agent": agent, Accept: "application/json" }, signal: AbortSignal.timeout(timeout), redirect: "error" });
+  if (!response.ok) throw new Error(`Public data returned ${response.status}`);
+  if (!response.headers.get("content-type")?.includes("application/json")) throw new Error("Expected JSON");
+  return response.json();
+}
+
 export function nextPayload(html) {
   const content = html.match(/<script[^>]*id=["']__NEXT_DATA__["'][^>]*>([\s\S]*?)<\/script>/i)?.[1];
   if (!content) return null;
@@ -158,6 +209,7 @@ export function classifyCategory(title, description = "", categories = []) {
   if (/halloween|horrors|sinful/i.test(text)) return "Parties";
   if (/festival|fest\b/i.test(text)) return "Festivals";
   if (/club|techno|house|trance|electronic|dj\b|dance floor|de la zona|berlin|vertigo|no borders/i.test(text)) return "Club nights";
+  if (/screening|film night|cinema/i.test(text)) return "Film";
   return "Live music";
 }
 
@@ -205,13 +257,11 @@ export function normalizeCloudjoi(html, url, verifiedAt) {
     if (venue.type === "online" || venue.is_cloud) return [];
     const location = classifyLocation(venue, event.title);
     const startAt = toMalaysiaDate(session.starts_at);
-    if (!location || !startAt) return [];
-    // This is an evening guide. Daytime concert and family matinees are omitted.
-    const hour = Number(new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Kuala_Lumpur", hour: "2-digit", hourCycle: "h23" }).format(new Date(startAt)));
-    if (hour >= 5 && hour < 17) return [];
+    if (!location || !startAt || !isEvening(startAt)) return [];
     const title = decodeText(event.title);
     const rawDescription = decodeText(event.description);
     const category = classifyCategory(title, rawDescription.slice(0, 195), event.categories);
+    if (!isNightlife(title, rawDescription.slice(0, 240), category)) return [];
     const description = cleanEventDescription(rawDescription, { category, venue: venue.name, area: location.area, startAt });
     return [{
       id: idFor("cloudjoi", title, venue.name, startAt), title, venue: decodeText(venue.name), ...location,
@@ -245,9 +295,10 @@ export function normalizeJsonLd(html, url, verifiedAt) {
     if (!venue || event.eventAttendanceMode?.includes("OnlineEvent")) return [];
     const location = classifyLocation(venue, event.name, "Kuala Lumpur");
     const startAt = toMalaysiaDate(event.startDate);
-    if (!location || !startAt) return [];
+    if (!location || !startAt || !isEvening(startAt)) return [];
     const rawDescription = decodeText(event.description);
     const category = classifyCategory(event.name, rawDescription.slice(0, 195));
+    if (!isNightlife(event.name, rawDescription.slice(0, 240), category)) return [];
     const description = cleanEventDescription(rawDescription, { category, venue: venue.name, area: location.area, startAt });
     const offers = [event.offers ?? []].flat();
     const image = [event.image ?? []].flat()[0];
@@ -266,21 +317,73 @@ export function normalizeJsonLd(html, url, verifiedAt) {
   });
 }
 
+function moneyLabel(cents, currency) {
+  const formatted = (cents / 100).toLocaleString("en-MY", { maximumFractionDigits: 2 });
+  return !currency || currency.toLowerCase() === "myr" ? `RM${formatted}` : `${currency.toUpperCase()} ${formatted}`;
+}
+
+export function lumaPrice(info) {
+  if (!info || typeof info !== "object") return null;
+  if (info.is_free) return "Free";
+  const cents = info.price?.cents;
+  if (!Number.isFinite(cents)) return null;
+  const max = info.max_price?.cents;
+  const prefix = Number.isFinite(max) && max > cents ? "From " : "";
+  return `${prefix}${moneyLabel(cents, info.price?.currency)}`;
+}
+
+export function lumaPlaceId(html) {
+  const place = nextPayload(html)?.props?.pageProps?.initialData?.data?.place;
+  if (place?.slug === "kuala-lumpur" && typeof place.api_id === "string" && /^discplace-[\w-]+$/.test(place.api_id)) return place.api_id;
+  return null;
+}
+
+export function normalizeLuma(entry, verifiedAt) {
+  const event = entry?.event;
+  if (!event?.name || !event.url || !event.start_at) return [];
+  if (event.location_type && event.location_type !== "offline") return [];
+  if (event.visibility && event.visibility !== "public") return [];
+  const geo = event.geo_address_info ?? {};
+  const venueName = decodeText(geo.address || geo.city || geo.city_state || "");
+  if (!venueName) return [];
+  const location = classifyLocation({ name: venueName, address_1: geo.full_address || geo.short_address || "", city: geo.city || "", state: { name: geo.region || "" } }, event.name, "Kuala Lumpur");
+  const startAt = toMalaysiaDate(event.start_at);
+  if (!location || !startAt || !isEvening(startAt)) return [];
+  const title = decodeText(event.name);
+  if (!isLumaNightlife(title)) return [];
+  const endAt = toMalaysiaDate(event.end_at);
+  const category = classifyCategory(title, "");
+  const description = cleanEventDescription("", { category, venue: venueName, area: location.area, startAt });
+  const slug = String(event.url).replace(/^\/+/, "");
+  if (!/^[\w-]+$/.test(slug)) return [];
+  const image = typeof event.cover_url === "string" && event.cover_url.startsWith("https://") ? event.cover_url : null;
+  return [{
+    id: idFor("luma", title, venueName, startAt), title, venue: venueName, ...location,
+    category, genres: genresFrom(title), startAt,
+    endAt: endAt && Date.parse(endAt) > Date.parse(startAt) ? endAt : null,
+    price: lumaPrice(entry.ticket_info), image, url: `https://luma.com/${slug}`,
+    source: "Luma", description, kind: "event", verifiedAt, featured: false,
+  }];
+}
+
+function withClock(event) {
+  const startAt = event.startAt ? toMalaysiaDate(event.startAt) : null;
+  const endAt = event.endAt ? toMalaysiaDate(event.endAt) : null;
+  return { ...event, startAt, endAt: endAt && (!startAt || Date.parse(endAt) > Date.parse(startAt)) ? endAt : null };
+}
+
 export function dedupeEvents(events) {
   const unique = new Map();
   for (const event of events) {
-    const minute = event.startAt?.slice(0, 16) ?? "venue";
-    const normalize = text => text.normalize("NFKD").toLowerCase().replace(/[^a-z\d]/g, "");
-    const key = `${normalize(event.title)}|${normalize(event.venue)}|${minute}`;
+    const normalize = text => String(text ?? "").normalize("NFKD").toLowerCase().replace(/[^a-z\d]/g, "");
+    const key = `${normalize(event.title)}|${normalize(event.venue)}|${eventDayKey(event.startAt)}`;
     if (!unique.has(key) || event.source === "CloudJoi") unique.set(key, event);
   }
   return [...unique.values()].sort((a, b) => (a.startAt ?? "9999").localeCompare(b.startAt ?? "9999"));
 }
 
 function isWithinRetention(event, now) {
-  if (event.kind === "venue") return true;
-  const date = Date.parse(event.endAt ?? event.startAt);
-  return Number.isFinite(date) && date >= now - 90 * 86400000 && date < now + 370 * 86400000;
+  return isCurrentEvent(event, now) && Date.parse(event.startAt) < now + 370 * 86400000;
 }
 
 export function hasEventMetadata(html, adapterId) {
@@ -333,30 +436,77 @@ export async function refresh({ dryRun = false } = {}) {
         success++;
       } catch (error) { failedUrls.add(url); failures.push(`${url}: ${error.message}`); }
     }
-    if (adapter.id === "cloudjoi") for (const definition of venuePages) {
-      const url = `https://www.cloudjoi.com/venues/${definition.slug}`;
-      try {
-        const record = normalizeVenue(await publicPage(url), definition, verifiedAt);
-        if (!record) throw new Error("No matching public venue metadata");
-        sourceEvents.push(record);
-        visitedUrls.add(url);
-        success++;
-      } catch (error) { failedUrls.add(url); failures.push(`${url}: ${error.message}`); }
-    }
     // Never resurrect an event successfully fetched as cancelled because another page failed.
     if (failures.length) sourceEvents.push(...retainFailedRecords(previous.events, sourceEvents, { source: adapter.name, failedUrls, visitedUrls, discoveryFailed, now }));
-    const normalized = dedupeEvents(sourceEvents);
+    const normalized = dedupeEvents(sourceEvents.map(withClock));
     collected.push(...normalized);
     sources.push({ id: adapter.id, name: adapter.name, url: adapter.url, status: !success ? "unavailable" : failures.length ? "partial" : "active", lastChecked: verifiedAt, count: normalized.length, note: `${adapter.note}${failures.length ? ` ${failures.length} requests failed; retained previously verified records where available.` : ""}` });
     console.log(`${adapter.name}: ${normalized.length} events, ${success} pages, ${failures.length} failures`);
     for (const failure of failures) console.warn(`  ${failure}`);
   }
-  const events = dedupeEvents(collected);
+  const luma = await collectLuma(previous, verifiedAt, now);
+  collected.push(...luma.events);
+  sources.push(luma.source);
+  console.log(`${luma.source.name}: ${luma.events.length} events, status ${luma.source.status}`);
+  const events = dedupeEvents(collected).filter(event => event.kind === "event" && isCurrentEvent(event, now));
+  for (const source of sources) source.count = events.filter(event => event.source === source.name).length;
   if (!events.length) throw new Error("No verified events returned. Existing snapshot was not overwritten.");
   const snapshot = { lastUpdated: verifiedAt, timezone: "Asia/Kuala_Lumpur", coverage: "Public-source curation, not an exhaustive inventory. Times and prices remain subject to organizer changes.", events, sources };
   if (!dryRun) { await mkdir(path.dirname(destination), { recursive: true }); await writeFile(destination, `${JSON.stringify(snapshot, null, 2)}\n`); }
-  console.log(`${events.filter(event => event.kind === "event").length} verified sessions, ${events.filter(event => event.kind === "venue").length} venues; ${events.filter(event => Date.parse(event.startAt) >= now).length} upcoming. ${dryRun ? "Dry run; no files written." : "Snapshot saved."}`);
+  console.log(`${events.length} upcoming nightlife events (${sources.map(source => `${source.name} ${source.count}`).join(", ")}). ${dryRun ? "Dry run; no files written." : "Snapshot saved."}`);
   return snapshot;
+}
+
+async function collectLuma(previous, verifiedAt, now) {
+  const sourceName = "Luma";
+  const pageUrl = "https://luma.com/kuala-lumpur";
+  const note = "Public events from the Kuala Lumpur city calendar. Only nightlife listings are kept.";
+  const sourceEvents = [];
+  const failures = [];
+  const visitedUrls = new Set();
+  let success = 0;
+  try {
+    const html = await publicPage(pageUrl);
+    success++;
+    const placeId = lumaPlaceId(html);
+    if (!placeId) throw new Error("Kuala Lumpur place id missing from the public city page");
+    let cursor = "";
+    const seenCursors = new Set();
+    for (let page = 0; page < 8; page++) {
+      const endpoint = new URL("https://api.luma.com/discover/get-paginated-events");
+      endpoint.searchParams.set("discover_place_api_id", placeId);
+      endpoint.searchParams.set("pagination_limit", "25");
+      if (cursor) endpoint.searchParams.set("pagination_cursor", cursor);
+      const payload = await publicJson(endpoint);
+      success++;
+      const entries = Array.isArray(payload?.entries) ? payload.entries : [];
+      for (const entry of entries) {
+        const slug = typeof entry?.event?.url === "string" ? entry.event.url.replace(/^\/+/, "") : "";
+        if (slug) visitedUrls.add(`https://luma.com/${slug}`);
+        sourceEvents.push(...normalizeLuma(entry, verifiedAt).filter(event => isWithinRetention(event, now)));
+      }
+      const next = payload?.has_more && typeof payload.next_cursor === "string" ? payload.next_cursor : "";
+      if (!next || seenCursors.has(next)) break;
+      seenCursors.add(next);
+      cursor = next;
+    }
+  } catch (error) {
+    failures.push(error.message);
+  }
+  if (failures.length) sourceEvents.push(...retainFailedRecords(previous.events ?? [], sourceEvents, { source: sourceName, failedUrls: new Set(), visitedUrls, discoveryFailed: true, now }));
+  const events = dedupeEvents(sourceEvents.map(withClock));
+  return {
+    events,
+    source: {
+      id: "luma",
+      name: sourceName,
+      url: pageUrl,
+      status: !success ? "unavailable" : failures.length ? "partial" : "active",
+      lastChecked: verifiedAt,
+      count: events.length,
+      note: failures.length ? `${note} ${failures.length} requests failed; retained previously verified records where available. ${failures[0]}` : note,
+    },
+  };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
