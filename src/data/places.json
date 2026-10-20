@@ -1,0 +1,293 @@
+{
+  "lastUpdated": "2026-10-20T13:30:05Z",
+  "coverage": "An editorial shortlist, not a ranking. Profiles and venue programmes can change; check the official source before visiting.",
+  "places": [
+    {
+      "id": "kyo",
+      "name": "kyō",
+      "area": "KLCC",
+      "region": "Kuala Lumpur",
+      "category": "Clubs",
+      "genres": [
+        "Hip-hop",
+        "R&B",
+        "House",
+        "Techno"
+      ],
+      "description": "Two rooms below the Mandarin Oriental: hip-hop and R&B at kyō, with house, techno and disco at Ren.",
+      "image": "https://linktr.ee/og/image/kyokl.jpg",
+      "imageSource": "https://linktr.ee/kyokl",
+      "url": "https://clubkyokl.asia/",
+      "instagram": "https://www.instagram.com/clubkyokl/",
+      "threads": null,
+      "address": "Basement Level 3, Mandarin Oriental, Kuala Lumpur City Centre, 50450 Kuala Lumpur",
+      "verifiedAt": "2026-10-20T13:30:05Z",
+      "sourceUrls": [
+        "https://clubkyokl.asia/",
+        "https://linktr.ee/kyokl"
+      ]
+    },
+    {
+      "id": "pisco",
+      "name": "Pisco KL",
+      "area": "Bukit Bintang",
+      "region": "Kuala Lumpur",
+      "category": "Clubs",
+      "genres": [
+        "Electronic",
+        "House",
+        "Disco"
+      ],
+      "description": "Jalan Mesui’s bar and dance floor, with visiting selectors and local DJ collectives. Check its Instagram for the latest programme.",
+      "image": null,
+      "imageSource": null,
+      "url": "https://heylink.me/piscokl",
+      "instagram": "https://www.instagram.com/pisco_kl/",
+      "threads": null,
+      "address": "29, Jalan Mesui, Bukit Bintang, 50200 Kuala Lumpur",
+      "verifiedAt": "2026-10-20T13:30:05Z",
+      "sourceUrls": [
+        "https://heylink.me/piscokl",
+        "https://whereto.party/events/girls-got-groove-at-pisco-kl",
+        "https://wanderlog.com/place/details/41057/pisco-bar"
+      ]
+    },
+    {
+      "id": "pitt",
+      "name": "PITT Club",
+      "area": "City Centre",
+      "region": "Kuala Lumpur",
+      "category": "Clubs",
+      "genres": [
+        "EDM",
+        "Hip-hop",
+        "R&B"
+      ],
+      "description": "A large dance club on the third floor of Life Centre, with resident DJs, international guests and a kinetic light rig.",
+      "image": "https://static.wixstatic.com/media/c0144f_e9ceb4ba7ff24143aaf97cb634404281f000.jpg",
+      "imageSource": "https://www.pittclubkl.com/",
+      "url": "https://www.pittclubkl.com/",
+      "instagram": "https://www.instagram.com/pittclubkl/",
+      "threads": null,
+      "address": "3rd Floor, Life Centre, 20, Jalan Sultan Ismail, 50250 Kuala Lumpur",
+      "verifiedAt": "2026-10-20T13:30:05Z",
+      "sourceUrls": [
+        "https://www.pittclubkl.com/",
+        "https://linktr.ee/pittclubkl",
+        "https://djmag.com/top100clubs/2024/66/pitt-club"
+      ]
+    },
+    {
+      "id": "iron-fairies",
+      "name": "The Iron Fairies",
+      "area": "TREC",
+      "region": "Kuala Lumpur",
+      "category": "Live music",
+      "genres": [
+        "Live bands",
+        "House"
+      ],
+      "description": "A fantasy-filled TREC venue with live bands in the main room and DJs in the Butterfly Room.",
+      "image": "https://theironfairies-files.s3.ap-southeast-1.amazonaws.com/if_kl_1_d6f0544a77.jpg",
+      "imageSource": "https://www.theironfairies.com/stores/iron-fairies-kl",
+      "url": "https://www.theironfairies.com/stores/iron-fairies-kl",
+      "instagram": "https://www.instagram.com/theironfairieskl/",
+      "threads": null,
+      "address": "H-G-06, TREC, 438 Jalan Tun Razak, 50400 Kuala Lumpur",
+      "verifiedAt": "2026-10-20T13:30:05Z",
+      "sourceUrls": [
+        "https://www.theironfairies.com/stores/iron-fairies-kl",
+        "https://thecitylist.my/blog/the-iron-fairies-kl-merdeka-groove-weekend-30-31-august-2024"
+      ]
+    },
+    {
+      "id": "fono",
+      "name": "fono",
+      "area": "Kampung Attap",
+      "region": "Kuala Lumpur",
+      "category": "Listening rooms",
+      "genres": [
+        "Electronic",
+        "Vinyl",
+        "Experimental"
+      ],
+      "description": "An intimate listening room and DIY community space in the Zhongshan Building, with local selectors, visiting DJs and experimental music.",
+      "image": null,
+      "imageSource": null,
+      "url": "https://www.instagram.com/fono.kl/",
+      "instagram": "https://www.instagram.com/fono.kl/",
+      "threads": null,
+      "address": "80C, Zhongshan Building, Jalan Rotan, Kampung Attap, 50460 Kuala Lumpur",
+      "verifiedAt": "2026-10-20T13:30:05Z",
+      "sourceUrls": [
+        "https://www.findglocal.com/MY/Kuala-Lumpur/192912657869969/fono",
+        "https://wanderlog.com/place/details/6984067/fono"
+      ]
+    },
+    {
+      "id": "bobo",
+      "name": "BoboKL",
+      "area": "Bangsar",
+      "region": "Kuala Lumpur",
+      "category": "Live music",
+      "genres": [
+        "Jazz",
+        "Soul",
+        "Cabaret"
+      ],
+      "description": "A small performance room on Jalan Bangkung, with a programme spanning jazz, soul, cabaret and comedy.",
+      "image": "https://cdn.cloudjoi.com/63988/unnamed.jpg",
+      "imageSource": "https://www.cloudjoi.com/venues/bobokl",
+      "url": "https://www.cloudjoi.com/bobokl",
+      "instagram": "https://www.instagram.com/bobokl/",
+      "threads": null,
+      "address": "65-2, Jalan Bangkung, Bangsar, 59100 Kuala Lumpur",
+      "verifiedAt": "2026-10-20T13:30:05Z",
+      "sourceUrls": [
+        "https://www.cloudjoi.com/venues/bobokl",
+        "https://www.cloudjoi.com/bobokl"
+      ]
+    },
+    {
+      "id": "rexkl",
+      "name": "REXKL",
+      "area": "Chinatown",
+      "region": "Kuala Lumpur",
+      "category": "Live music",
+      "genres": [
+        "Live bands",
+        "Electronic",
+        "Culture"
+      ],
+      "description": "An old cinema reimagined as a cultural hub on Jalan Sultan. Its programme includes performances, screenings and music events.",
+      "image": "https://cdn.prod.website-files.com/60940e690dee354df2668a30/654dd593fe72ac539a20f697_4CBD6E2E-DC33-4989-B7A0-0B143B002F06-443-000001C6B9B4F20D.JPG",
+      "imageSource": "https://rexkl.com/",
+      "url": "https://rexkl.com/",
+      "instagram": "https://www.instagram.com/hellorexkl/",
+      "threads": null,
+      "address": "80, Jalan Sultan, City Centre, 50000 Kuala Lumpur",
+      "verifiedAt": "2026-10-20T13:30:05Z",
+      "sourceUrls": [
+        "https://rexkl.com/",
+        "https://linktr.ee/hellorexkl"
+      ]
+    },
+    {
+      "id": "jaotim",
+      "name": "Jao Tim",
+      "area": "Chinatown",
+      "region": "Kuala Lumpur",
+      "category": "Live music",
+      "genres": [
+        "Jazz",
+        "Soul",
+        "Acoustic"
+      ],
+      "description": "An atmospheric Jalan Sultan shophouse with ticketed jazz, acoustic sets and table-lamp concerts.",
+      "image": "https://d2ncjxd2rk2vpl.cloudfront.net/jaotim/online-store/appearance/image/banners/banner_20f61d4b-4890-4eb9-bcf0-a072ab070c99",
+      "imageSource": "https://www.jaotim.com/",
+      "url": "https://www.jaotim.com/",
+      "instagram": "https://www.instagram.com/jaotimkl/",
+      "threads": null,
+      "address": "61, Jalan Sultan, City Centre, 50000 Kuala Lumpur",
+      "verifiedAt": "2026-10-20T13:30:05Z",
+      "sourceUrls": [
+        "https://www.jaotim.com/",
+        "https://jazznode.com/en/venues/my-kul-jao-tim"
+      ]
+    },
+    {
+      "id": "mantra",
+      "name": "Mantra",
+      "area": "Bangsar",
+      "region": "Kuala Lumpur",
+      "category": "Rooftops",
+      "genres": [
+        "DJ sets",
+        "Cocktails"
+      ],
+      "description": "A rooftop bar above Bangsar Village II for sunset drinks, skyline views and an evening music programme.",
+      "image": "https://mantrabarkl.com/wp-content/uploads/2024/03/Mantra0744.jpg",
+      "imageSource": "https://mantrabarkl.com/",
+      "url": "https://mantrabarkl.com/",
+      "instagram": "https://www.instagram.com/mantrabarkl/",
+      "threads": null,
+      "address": "Rooftop, Bangsar Village II, Jalan Telawi Satu, Bangsar Baru, 59100 Kuala Lumpur",
+      "verifiedAt": "2026-10-20T13:30:05Z",
+      "sourceUrls": [
+        "https://mantrabarkl.com/",
+        "https://mantrabarkl.com/contact/"
+      ]
+    },
+    {
+      "id": "ps150",
+      "name": "PS150",
+      "area": "Chinatown",
+      "region": "Kuala Lumpur",
+      "category": "Cocktail bars",
+      "genres": [
+        "Cocktails",
+        "Speakeasy"
+      ],
+      "description": "A cocktail bar behind an old Petaling Street shopfront, with intimate rooms shaped by the building’s history.",
+      "image": "https://static.wixstatic.com/media/bc0cb9_1dead81deea6457ba18bb8761ca01bd1~mv2.jpg",
+      "imageSource": "https://www.ps150.my/",
+      "url": "https://www.ps150.my/",
+      "instagram": "https://www.instagram.com/ps150kl/",
+      "threads": null,
+      "address": "150, Jalan Petaling, 50000 Kuala Lumpur",
+      "verifiedAt": "2026-10-20T13:30:05Z",
+      "sourceUrls": [
+        "https://www.ps150.my/",
+        "https://www.tatlerasia.com/dining/ps150-bar"
+      ]
+    },
+    {
+      "id": "locker-loft",
+      "name": "Locker & Loft",
+      "area": "Damansara Kim",
+      "region": "Selangor",
+      "category": "Cocktail bars",
+      "genres": [
+        "House",
+        "Funk",
+        "Soul"
+      ],
+      "description": "Behind a row of lockers in Damansara Kim: locally inspired cocktails, a copper bar and a music-led neighbourhood crowd.",
+      "image": "https://lockerandloft.com/og-locker.jpg",
+      "imageSource": "https://lockerandloft.com/",
+      "url": "https://lockerandloft.com/",
+      "instagram": "https://www.instagram.com/lockerandloft/",
+      "threads": null,
+      "address": "40A, Jalan SS20/10, Damansara Kim, 47400 Petaling Jaya, Selangor",
+      "verifiedAt": "2026-10-20T13:30:05Z",
+      "sourceUrls": [
+        "https://lockerandloft.com/",
+        "https://www.findglocal.com/MY/Petaling-Jaya/1513232538973269/The-Locker-%26-Loft"
+      ]
+    },
+    {
+      "id": "live-fact",
+      "name": "Live Fact",
+      "area": "Kota Damansara",
+      "region": "Selangor",
+      "category": "Live music",
+      "genres": [
+        "Indie",
+        "Rock",
+        "Experimental"
+      ],
+      "description": "An independent DIY venue in The Strand, hosting local bands, touring acts and intimate live gigs.",
+      "image": "https://www.livefact.my/wp-content/uploads/2021/05/img-aboutus-1.jpg",
+      "imageSource": "https://www.livefact.my/about/",
+      "url": "https://www.livefact.my/",
+      "instagram": "https://www.instagram.com/livefactkl/",
+      "threads": null,
+      "address": "Level 2, 6, Jalan PJU 5/21, The Strand, 47810 Petaling Jaya, Selangor",
+      "verifiedAt": "2026-10-20T13:30:05Z",
+      "sourceUrls": [
+        "https://www.livefact.my/about/"
+      ]
+    }
+  ]
+}

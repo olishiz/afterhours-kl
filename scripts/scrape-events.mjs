@@ -260,7 +260,7 @@ export function normalizeCloudjoi(html, url, verifiedAt) {
     if (!location || !startAt || !isEvening(startAt)) return [];
     const title = decodeText(event.title);
     const rawDescription = decodeText(event.description);
-    const category = classifyCategory(title, rawDescription.slice(0, 195), event.categories);
+    const category = classifyCategory(title, rawDescription, event.categories);
     if (!isNightlife(title, rawDescription.slice(0, 240), category)) return [];
     const description = cleanEventDescription(rawDescription, { category, venue: venue.name, area: location.area, startAt });
     return [{
@@ -297,7 +297,7 @@ export function normalizeJsonLd(html, url, verifiedAt) {
     const startAt = toMalaysiaDate(event.startDate);
     if (!location || !startAt || !isEvening(startAt)) return [];
     const rawDescription = decodeText(event.description);
-    const category = classifyCategory(event.name, rawDescription.slice(0, 195));
+    const category = classifyCategory(event.name, rawDescription);
     if (!isNightlife(event.name, rawDescription.slice(0, 240), category)) return [];
     const description = cleanEventDescription(rawDescription, { category, venue: venue.name, area: location.area, startAt });
     const offers = [event.offers ?? []].flat();

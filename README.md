@@ -1,6 +1,6 @@
 # Afterhours — Kuala Lumpur, after dark
 
-A nightlife guide for Kuala Lumpur and Selangor. The city page follows the Luma calendar: a night-skyline hero, a dotted timeline, and an event sheet. Light and dark themes share one lime accent. Every listing links to its original source.
+A nightlife guide for Kuala Lumpur and Selangor. The city page follows the Luma calendar: a night-skyline hero, a dotted event timeline, a discovery sidebar, and accessible detail drawers. A fixed header and sticky filters keep navigation available. Light and dark themes use neutral surfaces. Every listing links to its original source.
 
 Built from [JCodesMore/ai-website-cloner-template](https://github.com/JCodesMore/ai-website-cloner-template), with its MIT license retained.
 
@@ -12,12 +12,16 @@ Use Node 24. Run `npm ci`, then `npm run dev`. Open http://localhost:3000. No AP
 - `npm run test:scraper` — ingestion tests
 - `npm run scrape:events` — refresh public event listings
 
-The committed snapshot is the current public-source inventory. Coverage is curated, not exhaustive. The static site is published to GitHub Pages at https://olishiz.github.io/afterhours-kl/.
+The committed snapshot is the current public-source event inventory. A separate Places view contains researched nightlife venues and their official Instagram links. Coverage is curated, not exhaustive. Production is hosted on [Vercel](https://afterhours-kl.vercel.app/); GitHub Pages remains available at https://olishiz.github.io/afterhours-kl/.
 
 Read the [app guide](docs/AFTERHOURS.md), [data provenance](docs/research/events.md), and [Luma reference study](docs/research/luma/README.md).
 
+## Agent action items
+
+- [ ] [Build hourly Instagram and Threads ingestion](docs/action-items/hourly-social-ingestion.md) — access pilot, worker and scheduler, event extraction, review, data delivery, and acceptance criteria. This is a development handoff; hourly social ingestion is not enabled yet.
+
 ## Photograph
 
-The hero uses a Kuala Lumpur night skyline by [Esmonde Yong](https://unsplash.com/@esmonde), downloaded into `public/photos/kl-night-skyline.jpg`. It is free to use under the [Unsplash License](https://unsplash.com/license). Photo page: [high rise building during night time](https://unsplash.com/photos/high-rise-building-during-night-time--9B08uduMyY).
+The current responsive hero and city icon match [Luma’s Kuala Lumpur page](https://luma.com/kuala-lumpur), with local assets in `public/sites/luma/` and source URLs recorded in the [redesign evidence](docs/research/afterhours/redesign-2026-10-20.md). The page credits Luma. The earlier Esmonde Yong photograph remains in `public/photos/kl-night-skyline.jpg`; see its [Unsplash photo page](https://unsplash.com/photos/high-rise-building-during-night-time--9B08uduMyY).
 
 The mark and wordmark live in `public/brand/logo.svg`, `public/brand/icon.svg`, and `public/brand/og.png`. `public/icon.svg` is the favicon.

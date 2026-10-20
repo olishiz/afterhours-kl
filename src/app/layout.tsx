@@ -1,29 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeBoot } from "@/components/sites/afterhours/theme";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const themeBoot = `(function(){try{var k="afterhours-theme";var s=localStorage.getItem(k);var t=s==="light"||s==="dark"?s:(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");var r=document.documentElement;r.dataset.theme=t;r.style.colorScheme=t;}catch(e){}})();`;
 
 const assetBase = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export const metadata: Metadata = {
-  title: "afterhours — Kuala Lumpur",
-  description: "Club nights, live rooms and late tables in Kuala Lumpur and Selangor. Times in MYT, with a link to every original listing.",
+  title: "afterhours — Nightlife in Kuala Lumpur & Selangor",
+  description: "Find your next night out in Kuala Lumpur and Selangor. Discover club nights, live music, cocktail bars and local favourites, with real events and official venue links.",
   applicationName: "afterhours",
   icons: { icon: `${assetBase}/icon.svg`, apple: `${assetBase}/icon.svg` },
   openGraph: {
-    title: "afterhours — Kuala Lumpur",
+    title: "afterhours — Nightlife in Kuala Lumpur & Selangor",
     description: "A nightlife guide for Kuala Lumpur and Selangor. Times in MYT, and a link to each original listing.",
     locale: "en_MY",
     type: "website",
@@ -38,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className="min-h-full antialiased"
       suppressHydrationWarning
     >
       <head>

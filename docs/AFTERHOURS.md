@@ -1,6 +1,6 @@
 # Afterhours
 
-A nightlife guide for Kuala Lumpur and Selangor. The page follows the Luma city calendar: a full-bleed night hero, an events header, a dotted timeline of cards, and a detail sheet (a bottom sheet on mobile, a side panel on desktop). Copy, the lime accent, and the logo are Afterhours. Event artwork comes from each listing's own source.
+A nightlife guide for Kuala Lumpur and Selangor. The page follows the Luma city calendar: a full-bleed night hero, an events header, a dotted timeline of cards, and an accessible detail drawer on mobile and desktop. A fixed header, sticky list controls, and a desktop discovery sidebar keep the browsing flow available. Copy and the logo are Afterhours. Event artwork comes from each listing's own source.
 
 ## Run locally
 
@@ -16,10 +16,11 @@ Open http://localhost:3000. `basePath` and `assetPrefix` are set only when `PAGE
 ## What the page does
 
 - Light and dark themes. The choice is stored in `localStorage` under `afterhours-theme` and otherwise follows `prefers-color-scheme`.
-- Events are grouped as Today plus the weekday, or a date such as 21 Oct plus the weekday.
+- Events are grouped as Today, Tomorrow, or a date such as 21 Oct, plus the weekday.
 - Each card shows the 24-hour MYT time, title, price or Free, venue, and the listing's own cover. Opening a card shows the date, a map link, and the price. Event Page goes to the source URL.
 - Search matches title, venue, area, or genre. Chips filter by tonight, this weekend, area, genre, and free events.
-- Events that have already ended are omitted when the page is built and again when it is opened.
+- Events that have already ended are omitted when the page is built and again when it is opened. Tonight includes ongoing overnight events until the 06:00 MYT nightlife cutoff.
+- Places has 12 researched venues, area/vibe filters, official venue links, and verified Instagram profiles. Venues do not have invented event dates, prices, or opening hours.
 - There is no account, analytics, or tracking.
 
 ## Refresh the data
@@ -31,16 +32,22 @@ npm run scrape:events
 
 The scraper reads public CloudJoi and Where to Party pages, plus Luma's public Kuala Lumpur discover calendar at `api.luma.com/discover/get-paginated-events`. It checks robots.txt first, spaces requests, and keeps the previous snapshot for a source that fails. It does not log in, use API keys, or bypass bot protection. Only nightlife listings are kept. Past events are dropped. See [data provenance](research/events.md).
 
-The GitHub Actions refresh runs daily at 09:15 MYT, with a manual trigger available. Pushing the snapshot to `master` publishes the static export through `.github/workflows/deploy-pages.yml`.
+The GitHub Actions refresh runs daily at 09:15 MYT, with a manual trigger available. Pushing the snapshot to `master` publishes through the connected Vercel project and the GitHub Pages workflow. Vercel status should be checked on each deployment.
 
 ## Deploy
 
 The site is a static export (`output: "export"`). GitHub Pages deploys the `out` directory with `PAGES_BASE_PATH=/afterhours-kl`. Without that variable the export is rooted at `/`, which is what a Vercel project should use. No analytics service is used.
+
+## Pending development
+
+The [hourly social-ingestion action item](action-items/hourly-social-ingestion.md) is the handoff for the next agent. It specifies an access pilot, reliable hourly collection, event extraction and review, and runtime feed delivery. No hourly Instagram/Threads collection is currently enabled.
 
 ## Routes
 
 There is one route, `/`. Original ticket and event pages stay as outbound links.
 
 - `src/components/sites/afterhours/city-page.tsx` — city header, filters, and timeline.
-- `src/data/events.json` — source-verified snapshot.
+- `src/data/events.json` — source-verified dated-event snapshot.
+- `src/data/places.json` — curated venues, social links, and provenance.
+- `src/components/sites/afterhours/detail-sheet.tsx` — native modal detail drawer and cover rendering.
 - `docs/research/luma/README.md` — layout reference measurements and screenshots.

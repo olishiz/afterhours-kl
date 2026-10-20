@@ -67,6 +67,19 @@ test("JSON-LD drops cancelled events and impossible end-times", () => {
   assert.equal(normalizeJsonLd(html({ ...schema, eventStatus: "https://schema.org/EventCancelled" }), "https://whereto.party/events/test", "2026-10-18T00:00:00Z").length, 0);
 });
 
+test("club-night classification reads the complete published programme", () => {
+  const schema = {
+    "@type": "Event", name: "Girls Got Groove",
+    location: { name: "Pisco Bar", address: { addressLocality: "Kuala Lumpur" } },
+    startDate: "2026-10-23T22:00:00",
+    description: `${"A night of music with local selectors. ".repeat(8)}This party celebrates female DJ talent and underground electronic music.`,
+  };
+  const html = `<script type="application/ld+json">${JSON.stringify(schema)}</script>`;
+  const [event] = normalizeJsonLd(html, "https://whereto.party/events/groove", "2026-10-20T00:00:00Z");
+  assert.equal(event.category, "Club nights");
+  assert.ok(event.description.length <= 195);
+});
+
 test("venue records do not invent a residency, ticket price, or showtime", () => {
   const venue = { name: "BoboKL", slug: "bobokl", city: "Kuala Lumpur", banner: "https://cdn.example/venue.jpg" };
   const html = `<script id="__NEXT_DATA__">${JSON.stringify({ props: { pageProps: { dehydratedState: { queries: [{ queryKey: ["venues", "bobokl"], state: { data: venue } }] } } } })}</script>`;
