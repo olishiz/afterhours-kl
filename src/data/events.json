@@ -1,105 +1,8 @@
 {
-  "lastUpdated": "2026-10-22T06:08:11.990Z",
+  "lastUpdated": "2026-10-23T06:03:28.644Z",
   "timezone": "Asia/Kuala_Lumpur",
   "coverage": "Public-source curation, not an exhaustive inventory. Times and prices remain subject to organizer changes.",
   "events": [
-    {
-      "id": "cloudjoi-13ff9d63f12d",
-      "title": "Melissa Indot: The 80s! 6.0",
-      "venue": "BoboKL",
-      "area": "Bangsar",
-      "region": "Kuala Lumpur",
-      "category": "Live music",
-      "genres": [],
-      "startAt": "2026-10-22T20:30:00+08:00",
-      "endAt": "2026-10-22T22:30:00+08:00",
-      "price": "RM150",
-      "image": "https://cdn.cloudjoi.com/149572/conversions/cover-6938-melissa-indot-the-80s-60-web.jpg",
-      "url": "https://www.cloudjoi.com/shows/6938-melissa-indot-the-80s-60",
-      "source": "CloudJoi",
-      "description": "MELISSA INDOT returns to BoboKL with the sixth edition of her hugely popular, consistently sold out celebration of the greatest hits of the '80s. Expect an unforgettable night of iconic music & i",
-      "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
-      "featured": true
-    },
-    {
-      "id": "cloudjoi-129182229522",
-      "title": "CHEAPEST IN TOWN! Yap SomeMore : TELL ME A JOKE! Live this THURSDAY night | 8.30PM at KL Comedy Corner Sunway | Malaysia Vibes Near Me Lesgoooo",
-      "venue": "KL Comedy Corner",
-      "area": "Subang Jaya",
-      "region": "Selangor",
-      "category": "Comedy",
-      "genres": [],
-      "startAt": "2026-10-22T20:30:00+08:00",
-      "endAt": "2026-10-22T22:30:00+08:00",
-      "price": "From RM15",
-      "image": "https://cdn.cloudjoi.com/150862/conversions/cover-7458-cheapest-in-town-yap-somemore-tell-me-a-joke-live-this-thursday-night-web.jpg",
-      "url": "https://www.cloudjoi.com/shows/7458-cheapest-in-town-yap-somemore-tell-me-a-joke-live-this-thursday-night-830pm-at-kl-comedy-corner-sunway-malaysia-vibes-near-me-lesgoooo",
-      "source": "CloudJoi",
-      "description": "CHEAPEST IN TOWN! Yap SomeMore presents TELL ME A JOKE! LIVE this THURSDAY at KL Comedy Corner, Sunway. This is where we getting experimental, chaotic, funny, overshare, panic slightly (maybe?) a",
-      "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
-      "featured": false
-    },
-    {
-      "id": "cloudjoi-507ec2bd70d4",
-      "title": "just jokes: NEW JOKES NIGHT! LIVE AT A SECRET UNDERGROUND SPACE IN HARTAMAS, KUALA LUMPUR! feat. really great comics, headliners & secret guests!! [This Thursday, 22nd October 2026, 8:30PM showtime]",
-      "venue": "SECRET LOCATION (HARTAMAS, KUALA LUMPUR)",
-      "area": "Sri Hartamas",
-      "region": "Kuala Lumpur",
-      "category": "Comedy",
-      "genres": [],
-      "startAt": "2026-10-22T20:30:00+08:00",
-      "endAt": "2026-10-22T22:30:00+08:00",
-      "price": "From RM40",
-      "image": "https://cdn.cloudjoi.com/154186/conversions/cover-7632-just-jokes-new-jokes-night-live-at-a-secret-underground-space-in-hart-web.jpg",
-      "url": "https://www.cloudjoi.com/shows/7632-just-jokes-new-jokes-night-live-at-a-secret-underground-space-in-hartamas-kuala-lumpur-feat-really-great-comics-headliners-special-guests-this-thursday-22nd-october-2026-830pm-showtime",
-      "source": "CloudJoi",
-      "description": "THIS THURSDAY! NEW JOKES NIGHT goes UNDERGROUND (hint at hartamas!) !! a midweek night of NEW JOKES, really great comics, headliners and secret guests at a SECRET underground space in HARTAMAS!! ",
-      "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
-      "featured": false
-    },
-    {
-      "id": "cloudjoi-1f1df9def906",
-      "title": "笑机应变 - 无剧本即兴喜剧秀",
-      "venue": "Studio Yabai X",
-      "area": "Kuala Lumpur",
-      "region": "Kuala Lumpur",
-      "category": "Comedy",
-      "genres": [],
-      "startAt": "2026-10-22T21:00:00+08:00",
-      "endAt": "2026-10-22T23:00:00+08:00",
-      "price": "RM40",
-      "image": "https://cdn.cloudjoi.com/151249/conversions/cover-7475-web.jpg",
-      "url": "https://www.cloudjoi.com/shows/7475",
-      "source": "CloudJoi",
-      "description": "全靠现场随机应变的无剧本即兴喜剧表演 让坐在观众席的你，决定整场演出的疯狂走向！",
-      "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
-      "featured": false
-    },
-    {
-      "id": "wheretoparty-bf52c0c10145",
-      "title": "DE LA ZONA",
-      "venue": "Drip Kuala Lumpur",
-      "area": "Kuala Lumpur",
-      "region": "Kuala Lumpur",
-      "category": "Club nights",
-      "genres": [
-        "Techno"
-      ],
-      "startAt": "2026-10-22T21:30:00+08:00",
-      "endAt": "2026-10-23T03:00:00+08:00",
-      "price": "RM40",
-      "image": "https://cdn.whereto.party/media/events/a4bce663-afcd-4b53-8f4f-738cdb379084.jpg",
-      "url": "https://whereto.party/events/de-la-zona",
-      "source": "Where to Party",
-      "description": "DE LA ZONA Get ready for DE LA ZONA — a night where music, energy and nightlife culture come together under one roof. Presented by Appledom & friends, DE LA ZONA brings you an immersive night bui",
-      "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
-      "featured": false
-    },
     {
       "id": "cloudjoi-ae5e121151c2",
       "title": "MALAM SENANDUNG JIWANG 2026 (Bersempena Festival Muzik Antarabangsa Aswara 2026)",
@@ -116,7 +19,7 @@
       "source": "CloudJoi",
       "description": "KONSERT MALAM SENANDUNG JIWANG 2026 - Bersempena dengan Festival Muzik Antarabangsa ASWARA 2026 Tarikh : 23 Oktober 2026 Tempat : Panggung Eksperiment ASWARA Masa : 8:00 Malam",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -135,7 +38,7 @@
       "source": "CloudJoi",
       "description": "Relive the magic of the 80’s with Joelle Gomez! Featuring timeless hits by The Bangles, Roxette, Chicago, George Michael, Toto and more, backed by a fantastic live band for a night of your all-ti",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -154,7 +57,7 @@
       "source": "CloudJoi",
       "description": "👻 TRUE HORROR STORIES BY COMEDIANS VOL. 5 IS COMING. Apparently, four editions weren’t enough, and we're not stopping! 😭 More real stories. More creepy encounters. More things we probably shoul",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -177,7 +80,7 @@
       "source": "Where to Party",
       "description": "Dear party people , it is that time of the month when your favourite girlie edition of fun and groovy music is back at Pisco KL. Mark Friday, October 23rd in your calendars. From 10 PM onwards Wa",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -198,7 +101,64 @@
       "source": "Where to Party",
       "description": "Jambu Jambu Asia & Kikyo Present The House Ritual. A night dedicated to the best of house, from the classics to what’s coming out of the scene today, at Kikyo For our first edition we have Damien",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
+      "featured": false
+    },
+    {
+      "id": "cloudjoi-f29036a186f8",
+      "title": "Kasa Himalayan Sound Concert",
+      "venue": "Serai Hall KLGCC",
+      "area": "Kuala Lumpur",
+      "region": "Kuala Lumpur",
+      "category": "Live music",
+      "genres": [],
+      "startAt": "2026-10-24T19:00:00+08:00",
+      "endAt": "2026-10-24T21:00:00+08:00",
+      "price": "From RM380",
+      "image": "https://cdn.cloudjoi.com/142757/conversions/cover-6830-kasa-himalaya-sound-concert-web.jpg",
+      "url": "https://www.cloudjoi.com/shows/6830-kasa-himalaya-sound-concert",
+      "source": "CloudJoi",
+      "description": "Experience an extraordinary evening where ancient Himalayan sound meets modern concert artistry, featuring Master Santa Ratna Shakya, Salil Subedi, and Saraswati Kim. Every vibration awakens purp",
+      "kind": "event",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
+      "featured": false
+    },
+    {
+      "id": "cloudjoi-b5901125f5ca",
+      "title": "Homeground Live Vol. IX: Lucid",
+      "venue": "pangkin@ejklsseni",
+      "area": "Kuala Lumpur",
+      "region": "Kuala Lumpur",
+      "category": "Live music",
+      "genres": [],
+      "startAt": "2026-10-24T20:00:00+08:00",
+      "endAt": "2026-10-24T22:00:00+08:00",
+      "price": "RM30",
+      "image": "https://cdn.cloudjoi.com/152586/conversions/cover-7547-homeground-live-vol-ix-lucid-web.jpg",
+      "url": "https://www.cloudjoi.com/shows/7547-homeground-live-vol-ix-lucid",
+      "source": "CloudJoi",
+      "description": "Your homeground for local homegrown music!",
+      "kind": "event",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
+      "featured": false
+    },
+    {
+      "id": "cloudjoi-85b286d12abc",
+      "title": "RENTAK BUDAYA 2026",
+      "venue": "Labu Sayong Fountain",
+      "area": "Kuala Lumpur",
+      "region": "Kuala Lumpur",
+      "category": "Live music",
+      "genres": [],
+      "startAt": "2026-10-24T20:00:00+08:00",
+      "endAt": "2026-10-24T23:00:00+08:00",
+      "price": "Free",
+      "image": "https://cdn.cloudjoi.com/154554/conversions/cover-7633-rentak-budaya-2026-web.jpg",
+      "url": "https://www.cloudjoi.com/shows/7633-rentak-budaya-2026",
+      "source": "CloudJoi",
+      "description": "Rentak Budaya 2026 is a vibrant cultural celebration showcasing Malaysia’s rich heritage through traditional music, performing arts and cultural expressions. \"One Rhythm, A Thousand Cultures.\"",
+      "kind": "event",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -219,7 +179,26 @@
       "source": "CloudJoi",
       "description": "Freida takes on the best of ’70s & ’80s rock with classics from Led Zeppelin, AC/DC, Van Halen, Fleetwood Mac, Def Leppard, The Knack, The Beatles and more. Joined by Bernice Tay (Keys & Vocals),",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
+      "featured": false
+    },
+    {
+      "id": "cloudjoi-7f0281641314",
+      "title": "Laspice吉隆坡中文脱口秀开放麦-蕉辣秀🌶",
+      "venue": "Studio Yabai X",
+      "area": "Kuala Lumpur",
+      "region": "Kuala Lumpur",
+      "category": "Comedy",
+      "genres": [],
+      "startAt": "2026-10-24T20:30:00+08:00",
+      "endAt": "2026-10-24T22:30:00+08:00",
+      "price": "From RM30",
+      "image": "https://cdn.cloudjoi.com/152525/conversions/cover-7544-laspice-web.jpg",
+      "url": "https://www.cloudjoi.com/shows/7544-laspice",
+      "source": "CloudJoi",
+      "description": "马来西亚中文脱口秀开放麦-蕉辣秀，来了！ jio朋友来笑一笑吧！ 10月24日 星期六晚上830pm。 来场脱口秀开放麦当作余兴节目结束快乐的一天吧！ 有趣的互动，来自各地的大马本土喜剧演员讲笑话给你听，脑洞大开的即兴活动，哈哈哈一整晚！ 这些只需要RM30，两人结伴RM55更加优惠哦！ 一起来看场脱口秀开放麦吧！ A hilarious night featuring local co",
+      "kind": "event",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -242,7 +221,26 @@
       "source": "Where to Party",
       "description": "We're back. Less Is More x NWHR x Rogue Instinct, round two, and this one is a HER night. Di Linh (Savage, The Observatory, Equation/ VN) lands from Hanoi, and she's one of the most exciting voic",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
+      "featured": false
+    },
+    {
+      "id": "cloudjoi-9f4137110cc8",
+      "title": "TAKASE TOYA ASIA TOUR 2026 “∞” - KUALA LUMPUR",
+      "venue": "ZEPP Kuala Lumpur",
+      "area": "Bukit Bintang",
+      "region": "Kuala Lumpur",
+      "category": "Live music",
+      "genres": [],
+      "startAt": "2026-10-25T18:30:00+08:00",
+      "endAt": "2026-10-25T20:30:00+08:00",
+      "price": "From RM228",
+      "image": "https://cdn.cloudjoi.com/146940/conversions/cover-7106-takase-toya-asia-tour-2026-kuala-lumpur-web.jpg",
+      "url": "https://www.cloudjoi.com/shows/7106-takase-toya-asia-tour-2026-kuala-lumpur",
+      "source": "CloudJoi",
+      "description": "I'm truly happy that I can go see everyone in Asia again with my 5th album &infin;. Many of my songs were discovered overseas before they were in Japan, and I've been saved countless times by the",
+      "kind": "event",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -263,7 +261,7 @@
       "source": "CloudJoi",
       "description": "From Girlhood is Beta Rivellino’s personal journey through the music that shaped her, celebrating the women who inspired her while finding her own voice as a songwriter. Expect Bossa Nova, Jazz, ",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -282,7 +280,7 @@
       "source": "CloudJoi",
       "description": "马来西亚中文脱口秀开放麦-酸辣秀，来了！ jio朋友来笑一笑吧！ 10月28日 小周末星期三晚上830pm。 来场脱口秀开放麦当作余兴节目结束快乐的一天吧！ 有趣的互动，来自各地的大马本土喜剧演员讲笑话给你听，脑洞大开的即兴活动，哈哈哈一整晚！ 这些只需要RM30，两人结伴RM55更加优惠哦！ 一起来看场脱口秀开放麦吧！ A hilarious night featuring local",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -303,7 +301,7 @@
       "source": "Where to Party",
       "description": "For the very first time, No Borders arrives in Kuala Lumpur - an electrifying debut where boundaries dissolve and music becomes pure energy. This edition features Wicca Boson (Taiwan) + Aprilia S",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": true
     },
     {
@@ -326,26 +324,7 @@
       "source": "Where to Party",
       "description": "🚨 KUALA LUMPUR, WE’RE TAKING IT TO THE NEXT LEVEL One rooftop. 8 DJs. Different sounds. Signature cocktails. And a Thursday night you don’t want to miss. OMNISYNC IS TAKING OVER VERTIGO We’re br",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
-      "featured": false
-    },
-    {
-      "id": "cloudjoi-6b8c2754e654",
-      "title": "CHEAPEST IN TOWN! Yap SomeMore : TELL ME A JOKE! Live this THURSDAY night | 8.30PM at KL Comedy Corner Sunway | Malaysia Vibes Near Me Lesgoooo",
-      "venue": "KL Comedy Corner",
-      "area": "Subang Jaya",
-      "region": "Selangor",
-      "category": "Comedy",
-      "genres": [],
-      "startAt": "2026-10-29T20:30:00+08:00",
-      "endAt": "2026-10-29T22:30:00+08:00",
-      "price": "From RM15",
-      "image": "https://cdn.cloudjoi.com/150862/conversions/cover-7458-cheapest-in-town-yap-somemore-tell-me-a-joke-live-this-thursday-night-web.jpg",
-      "url": "https://www.cloudjoi.com/shows/7458-cheapest-in-town-yap-somemore-tell-me-a-joke-live-this-thursday-night-830pm-at-kl-comedy-corner-sunway-malaysia-vibes-near-me-lesgoooo",
-      "source": "CloudJoi",
-      "description": "CHEAPEST IN TOWN! Yap SomeMore presents TELL ME A JOKE! LIVE this THURSDAY at KL Comedy Corner, Sunway. This is where we getting experimental, chaotic, funny, overshare, panic slightly (maybe?) a",
-      "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -366,8 +345,27 @@
       "source": "CloudJoi",
       "description": "Bach, reimagined through jazz. WVC presents a fresh take on the music of J.S. Bach, featuring works such as Air on the G String, Badinerie, Largo, Jesu, Joy of Man’s Desiring and more.",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": true
+    },
+    {
+      "id": "cloudjoi-6b8c2754e654",
+      "title": "CHEAPEST IN TOWN! Yap SomeMore : TELL ME A JOKE! Live this THURSDAY night | 8.30PM at KL Comedy Corner Sunway | Malaysia Vibes Near Me Lesgoooo",
+      "venue": "KL Comedy Corner",
+      "area": "Subang Jaya",
+      "region": "Selangor",
+      "category": "Comedy",
+      "genres": [],
+      "startAt": "2026-10-29T20:30:00+08:00",
+      "endAt": "2026-10-29T22:30:00+08:00",
+      "price": "From RM15",
+      "image": "https://cdn.cloudjoi.com/150862/conversions/cover-7458-cheapest-in-town-yap-somemore-tell-me-a-joke-live-this-thursday-night-web.jpg",
+      "url": "https://www.cloudjoi.com/shows/7458-cheapest-in-town-yap-somemore-tell-me-a-joke-live-this-thursday-night-830pm-at-kl-comedy-corner-sunway-malaysia-vibes-near-me-lesgoooo",
+      "source": "CloudJoi",
+      "description": "CHEAPEST IN TOWN! Yap SomeMore presents TELL ME A JOKE! LIVE this THURSDAY at KL Comedy Corner, Sunway. This is where we getting experimental, chaotic, funny, overshare, panic slightly (maybe?) a",
+      "kind": "event",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
+      "featured": false
     },
     {
       "id": "cloudjoi-3d34cf4ea738",
@@ -385,7 +383,7 @@
       "source": "CloudJoi",
       "description": "Halloween, questionable comedy and a costume prize — what could possibly go wrong? Join host King, special guest Piravina and a lineup of brave comics ready to take their chances on the mic. Come",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -406,7 +404,7 @@
       "source": "Where to Party",
       "description": "DE LA ZONA Get ready for DE LA ZONA — a night where music, energy and nightlife culture come together under one roof. Presented by Appledom & friends, DE LA ZONA brings you an immersive night bui",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -425,7 +423,7 @@
       "source": "Where to Party",
       "description": "Your pre-Halloween party begins at WET Deck as Crystal Head Vodka takes you into darker waters with The Sirens, a seductive night of temptation, danger and fierce female energy, led by an all-fem",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -446,7 +444,7 @@
       "source": "Where to Party",
       "description": "Dash Berlin became one of the most recognisable names in global trance, delivering unforgettable anthems, emotional melodies and legendary live performances to fans around the world. Now, after y",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": true
     },
     {
@@ -465,7 +463,7 @@
       "source": "CloudJoi",
       "description": "ONE NIGHT ONLY. FIERY LADIES RETURNS featuring Marissa Wong & friends! Presented by Yap SomeMore 🎤🔥 Join our Fiery Ladies for a night of laughter, and comedy chaos at KL Comedy Corner, Sunway. ",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -486,7 +484,7 @@
       "source": "CloudJoi",
       "description": "The Empress Collective presents A Bollywood & Sufi Experience, bringing together the soul of Sufi music and the magic of Bollywood. Led by Sharon Chong, featuring Milan Sharma on vocals and an ex",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -507,7 +505,7 @@
       "source": "Where to Party",
       "description": "n the Realm is an immersive evening of meditative, hypnotic techno paired with fragrance by perfumer Essentique. Sound and scent are woven together across the night each phase of the set carries ",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -526,7 +524,7 @@
       "source": "Where to Party",
       "description": "This October, we’re getting geared up to spook you once again 👻 Stay on your toes, KL’s creepiest rave is just around the corner 👀",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": true
     },
     {
@@ -545,7 +543,7 @@
       "source": "CloudJoi",
       "description": "euphoria 2.0 is The After School’s annual concert showcase - an exhilarating celebration of music, ballet and musical theatre, bringing together the passion, creativity and dedication of our youn",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -564,7 +562,7 @@
       "source": "CloudJoi",
       "description": "「可以不要 last minute 吗？到底为什么所有事情都不能早点讲？」这句话，Jerome 想问很久了。 你有plan，但你的plan只能被打破，不能被执行，于是我们习惯了。 提前做事，是一种幻想。 准时下班，是一种奢侈。 临时通知，是一种文化。 Last minute，是一种生活方式。 继《我是下班族》之后，Jerome 侯立康再次把那些上班族熟悉的荒谬日常，搬上舞台。 想不想看到",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -583,7 +581,7 @@
       "source": "CloudJoi",
       "description": "A spectacular celebration of music, featuring the incredible talents of young pianists from Illy Piano Academy. Experience their passion, dedication and creativity as they bring iconic movie soun",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -602,7 +600,7 @@
       "source": "CloudJoi",
       "description": "LAUGH OUT LOUD #23 features another Stand-Up Comedy Open Mic Special Edition for a truly Horrifying HALLOWEEN. With Host ANDRE D. D’CRUZ as his alter ego MICHAEL MAHES. The line-up should compris",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -621,7 +619,7 @@
       "source": "CloudJoi",
       "description": "A gothic descent through 6 chapters, 29 songs and 1 twisted story, narrated by The Count himself. Music Mayhem feat. Project Amplify brings The Black Parade to life for one dark, theatrical Hallo",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": true
     },
     {
@@ -640,7 +638,7 @@
       "source": "Where to Party",
       "description": "🩸🏥 GMANSION HALLOWEEN PARTY NIGHT — HOSPITAL OF HORRORS! 🏥🩸 👻 Something wicked is coming… Are you ready for a night of fright, fun & fabulous prizes? 🕷️🩺 📅 Date: 31 October 2026 (Saturday",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -659,7 +657,7 @@
       "source": "CloudJoi",
       "description": "A celebration of 400 years since the death of John Dowland, exploring his soulful, melancholic music alongside the playful sounds of his Renaissance contemporaries, Morley, Campion and Farmer.",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -678,7 +676,7 @@
       "source": "CloudJoi",
       "description": "🌙 Moonlight Concert Series 2026🌙 We are delighted to invite you to our second *Moonlight Concert Series 2026*, featuring four intimate concerts showcasing beautiful solo performances",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -697,7 +695,7 @@
       "source": "CloudJoi",
       "description": "Comedy Open Mic Experience is where rising and seasoned comedians come together to test fresh jokes, experiment with new ideas, and create unforgettable moments live on stage.",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -716,7 +714,7 @@
       "source": "CloudJoi",
       "description": "The Making Of Jokes is an open mic stand-up comedy show where newbies & experienced comedians test new jokes. This is where jokes get manufactured and polished. Come & experience raw stand-up com",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -737,7 +735,7 @@
       "source": "CloudJoi",
       "description": "Step into the enchanting world of Studio Ghibli as WVC Jazz Ensemble reimagines beloved film soundtracks through jazz. Featuring Poann on violin, enjoy fresh arrangements of iconic melodies from ",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": true
     },
     {
@@ -758,7 +756,7 @@
       "source": "Where to Party",
       "description": "Jambu Jambu Asia and YKO presents Chris Luno! Berlin-based DJ and producer Chris Luno has built an international following through his YouTube mix series, which has amassed over 75 million views,",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -779,7 +777,7 @@
       "source": "CloudJoi",
       "description": "Step into the enchanting world of Studio Ghibli as WVC Jazz Ensemble reimagines beloved film soundtracks through jazz. Featuring Poann on violin, enjoy fresh arrangements of iconic melodies from ",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": true
     },
     {
@@ -800,7 +798,7 @@
       "source": "CloudJoi",
       "description": "FLOW &times; NARUTO: The Ultimate Tag-Team Heads to Asia Following Worldwide Acclaim! \"FLOW WORLD TOUR 2026 'NARUTO THE ROCK' – Asia Tour Officially Announced!!!\"",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -821,7 +819,7 @@
       "source": "Where to Party",
       "description": "Stovelab presents Echo Chamber 4. Three rounds in, and the chamber keeps getting louder. For the fourth edition, we're turning the spotlight back home. Echo Chamber 4 is built entirely on our ver",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -843,7 +841,7 @@
       "source": "CloudJoi",
       "description": "Vanessa Barker returns to BoboKL with Motown 2.0, bringing a fresh spin to the timeless sounds of Motown, soul and R&B. Backed by an eight-piece band featuring Josh Thomas, Azlan Ahmad, Eddie Wan",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -862,7 +860,7 @@
       "source": "CloudJoi",
       "description": "Jalan Jalan Cari Punchline is OMKL’s comedy curated show! Lined up with excellent up-and-coming local comedians, the show will be mixed in English and Malay.",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -884,7 +882,7 @@
       "source": "CloudJoi",
       "description": "Vanessa Barker returns to BoboKL with Motown 2.0, bringing a fresh spin to the timeless sounds of Motown, soul and R&B. Backed by an eight-piece band featuring Josh Thomas, Azlan Ahmad, Eddie Wan",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -907,7 +905,7 @@
       "source": "Where to Party",
       "description": "SIN: HALLOWEEN 2026 🥀 THEME - SINFUL SINNER Every saint has a past. Every sinner has a night. This Halloween, SIN returns for a night of dark energy, underground beats and unforgettable moments.",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -926,7 +924,7 @@
       "source": "CloudJoi",
       "description": "Comedy Open Mic Experience is where rising and seasoned comedians come together to test fresh jokes, experiment with new ideas, and create unforgettable moments live on stage.",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -945,7 +943,7 @@
       "source": "CloudJoi",
       "description": "Ryan Pynam brings the timeless music of C&eacute;line Dion to life in an intimate evening of powerful ballads and beloved classics. Accompanied by KK on keys, expect an evening of soaring vocals,",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -964,7 +962,7 @@
       "source": "CloudJoi",
       "description": "From Mozart to Cole Porter, opera to Broadway! Join Calista Lim and pianist Joanne Tan for a delightful musical journey through the centuries, as the female voice finds new songs, new stories and",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -983,7 +981,7 @@
       "source": "CloudJoi",
       "description": "Every journey deserves a finale. The trilogy reaches its conclusion with an evening of beautiful ballads from Final Fantasy VII and Kingdom Hearts, performed live by Raja Farouk and an 18-piece c",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -1002,7 +1000,7 @@
       "source": "CloudJoi",
       "description": "Every journey deserves a finale. The trilogy reaches its conclusion with an evening of beautiful ballads from Final Fantasy VII and Kingdom Hearts, performed live by Raja Farouk and an 18-piece c",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
@@ -1021,27 +1019,29 @@
       "source": "CloudJoi",
       "description": "Every journey deserves a finale. The trilogy reaches its conclusion with an evening of beautiful ballads from Final Fantasy VII and Kingdom Hearts, performed live by Raja Farouk and an 18-piece c",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
-      "id": "cloudjoi-d2bf45016783",
-      "title": "Ejen Ali in Concert",
-      "venue": "Plenary Hall, KLCC",
-      "area": "Kuala Lumpur",
+      "id": "cloudjoi-62c4496f3757",
+      "title": "Kebaya Jazz with Ida & WVC",
+      "venue": "BoboKL",
+      "area": "Bangsar",
       "region": "Kuala Lumpur",
-      "category": "Live music",
-      "genres": [],
-      "startAt": "2026-11-28T20:00:00+08:00",
-      "endAt": "2026-11-28T22:00:00+08:00",
-      "price": "From RM50",
-      "image": "https://cdn.cloudjoi.com/150753/conversions/cover-7372-ejen-ali-in-concert-web.jpg",
-      "url": "https://www.cloudjoi.com/shows/7372-ejen-ali-in-concert",
+      "category": "Jazz & Soul",
+      "genres": [
+        "Jazz"
+      ],
+      "startAt": "2026-11-24T20:30:00+08:00",
+      "endAt": "2026-11-24T22:30:00+08:00",
+      "price": "RM100",
+      "image": "https://cdn.cloudjoi.com/154103/conversions/cover-7638-kebaya-jazz-with-ida-wvc-web.jpg",
+      "url": "https://www.cloudjoi.com/shows/7638-kebaya-jazz-with-ida-wvc",
       "source": "CloudJoi",
-      "description": "Celebrate the 10th Anniversary of Ejen Ali with an unforgettable musical journey! Join us for a spectacular live performance that brings the series and movies' iconic music from the silver screen",
+      "description": "WVC Jazz and Ida Mariana present Kebaya Jazz, a celebration of Malaysian musical heritage with a jazzy twist. Featuring the captivating vocals of Ida Mariana alongside WVC's signature jazz arrang",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
-      "featured": false
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
+      "featured": true
     },
     {
       "id": "cloudjoi-e45d96fa44c6",
@@ -1059,26 +1059,26 @@
       "source": "CloudJoi",
       "description": "Join us for a heartwarming and entertaining concert performed by our talented singers from Young Choral Academy.",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     },
     {
-      "id": "cloudjoi-8054f6d79c40",
-      "title": "Ejen Ali in Concert",
-      "venue": "Plenary Hall, KLCC",
-      "area": "Kuala Lumpur",
-      "region": "Kuala Lumpur",
+      "id": "cloudjoi-932a0627079a",
+      "title": "Wendy Wander 2026-2027 ASIA TOUR IN MALAYSIA",
+      "venue": "Studio AB",
+      "area": "Petaling Jaya",
+      "region": "Selangor",
       "category": "Live music",
       "genres": [],
-      "startAt": "2026-11-29T20:00:00+08:00",
-      "endAt": "2026-11-29T22:00:00+08:00",
-      "price": "From RM50",
-      "image": "https://cdn.cloudjoi.com/150753/conversions/cover-7372-ejen-ali-in-concert-web.jpg",
-      "url": "https://www.cloudjoi.com/shows/7372-ejen-ali-in-concert",
+      "startAt": "2027-02-27T20:00:00+08:00",
+      "endAt": "2027-02-27T22:00:00+08:00",
+      "price": "From RM198",
+      "image": "https://cdn.cloudjoi.com/153586/conversions/cover-7603-wendy-wander-2026-2027-asia-tour-in-malaysia-web.jpg",
+      "url": "https://www.cloudjoi.com/shows/7603-wendy-wander-2026-2027-asia-tour-in-malaysia",
       "source": "CloudJoi",
-      "description": "Celebrate the 10th Anniversary of Ejen Ali with an unforgettable musical journey! Join us for a spectacular live performance that brings the series and movies' iconic music from the silver screen",
+      "description": "循著你的痕跡，我們慢慢靠近 // 此時只想和你一起 // 隨著我們的氣息，與你共舞",
       "kind": "event",
-      "verifiedAt": "2026-10-22T06:08:11.990Z",
+      "verifiedAt": "2026-10-23T06:03:28.644Z",
       "featured": false
     }
   ],
@@ -1088,8 +1088,8 @@
       "name": "CloudJoi",
       "url": "https://www.cloudjoi.com/",
       "status": "active",
-      "lastChecked": "2026-10-22T06:08:11.990Z",
-      "count": 39,
+      "lastChecked": "2026-10-23T06:03:28.644Z",
+      "count": 40,
       "note": "Public Malaysian ticket listings; evening music, concerts and comedy in KL / Selangor. Ticket fees may apply."
     },
     {
@@ -1097,8 +1097,8 @@
       "name": "Where to Party",
       "url": "https://whereto.party/in/kuala-lumpur",
       "status": "active",
-      "lastChecked": "2026-10-22T06:08:11.990Z",
-      "count": 15,
+      "lastChecked": "2026-10-23T06:03:28.644Z",
+      "count": 14,
       "note": "Public organizer-submitted club nights. Confirm door policies with the organizer."
     },
     {
@@ -1106,7 +1106,7 @@
       "name": "Luma",
       "url": "https://luma.com/kuala-lumpur",
       "status": "active",
-      "lastChecked": "2026-10-22T06:08:11.990Z",
+      "lastChecked": "2026-10-23T06:03:28.644Z",
       "count": 0,
       "note": "Public events from the Kuala Lumpur city calendar. Only nightlife listings are kept."
     }
