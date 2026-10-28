@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowUpRight, Check, ChevronDown, ChevronsLeft, ChevronUp, Link2, MapPin } from "lucide-react";
+import { track, urlHost } from "@/lib/analytics";
 import type { NightEvent } from "@/lib/events";
 import { cn } from "@/lib/utils";
 
@@ -89,6 +90,10 @@ export function DetailSheet({ event, titleId, hasPrev, hasNext, onPrev, onNext, 
     }
   }
 
+  function trackOutbound(link: "event_page" | "ticket") {
+    track("Outbound Ticket Clicked", { event_id: event.id, source: event.source, destination_host: urlHost(event.url), link, kind: event.kind });
+  }
+
   return (
     <dialog
       ref={dialogRef}
@@ -111,7 +116,7 @@ export function DetailSheet({ event, titleId, hasPrev, hasNext, onPrev, onNext, 
           {result?.status === "copied" ? <Check className="size-3.5" aria-hidden="true" /> : <Link2 className="size-3.5" aria-hidden="true" />}
           <span className="hidden min-[380px]:inline">{result?.status === "copied" ? "Copied" : "Copy Link"}</span>
         </button>
-        <a className="pill" href={event.url} target="_blank" rel="noreferrer" aria-label={isEvent ? "Open original event page" : "Open official venue page"}>
+        <a className="pill" href={event.url} target="_blank" rel="noreferrer" onClick={() => trackOutbound("event_page")} aria-label={isEvent ? "Open original event page" : "Open official venue page"}>
           <span>{isEvent ? "Event Page" : "Venue Page"}</span>
           <ArrowUpRight className="size-3.5" aria-hidden="true" />
         </a>
@@ -160,7 +165,7 @@ export function DetailSheet({ event, titleId, hasPrev, hasNext, onPrev, onNext, 
           <p className="text-sm font-medium">{isEvent ? "Tickets & admission" : "Plan your night"}</p>
           {isEvent && event.price && <p className="mt-1 text-xl leading-7 font-semibold">{event.price}</p>}
           <p className="mt-2 text-sm leading-5 text-[var(--text-secondary)]">{isEvent ? "Get tickets and the latest details from the original listing." : "Explore the venue’s latest programme, reservations and entry details."}</p>
-          <a href={event.url} target="_blank" rel="noreferrer" className="listing-link mt-4 flex min-h-[38px] items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-85">
+          <a href={event.url} target="_blank" rel="noreferrer" onClick={() => trackOutbound("ticket")} className="listing-link mt-4 flex min-h-[38px] items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-85">
             {isEvent ? "View event" : "Visit venue"}<ArrowUpRight className="size-4" aria-hidden="true" />
           </a>
           {socialLinks.length > 0 && <div className="mt-3 flex flex-wrap gap-2">{socialLinks.map((link) => <a key={link.url} className="pill" href={link.url} target="_blank" rel="noreferrer">{link.label}<ArrowUpRight className="size-3.5" aria-hidden="true" /></a>)}</div>}

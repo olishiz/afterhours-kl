@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@/components/analytics";
 import { ThemeBoot } from "@/components/sites/afterhours/theme";
 import "./globals.css";
 
@@ -40,6 +41,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full bg-[var(--page)] font-sans text-[var(--text)]">
         <ThemeBoot />
+        <Analytics />
         {children}
       </body>
     </html>
