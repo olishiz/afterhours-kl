@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Optional Amplitude product analytics, enabled by `NEXT_PUBLIC_AMPLITUDE_API_KEY`. Without the key, analytics do nothing.
+
 ### Fixed
 - Count the README token badge in CI so it reflects the current default branch instead of a stale hosted count.
 

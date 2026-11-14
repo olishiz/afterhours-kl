@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowDown, ArrowUpRight, Camera, ChevronDown, Clock3, MapPin, Moon, Search, Sun, X } from "lucide-react";
 import { events, isUpcoming, lastUpdated, type NightEvent } from "@/lib/events";
 import { places, placesLastUpdated, type NightPlace } from "@/lib/places";
+import { track, type FilterName } from "@/lib/analytics";
 import { asset } from "@/lib/base-path";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/sites/afterhours/logo";
@@ -70,6 +71,8 @@ export function CityPage({ now }: { now: string }) {
   const [scrolled, setScrolled] = useState(false);
   const discoverRef = useRef<HTMLElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const listViewed = useRef(false);
   const titleId = useId();
 
   useEffect(() => {
@@ -140,6 +143,29 @@ export function CityPage({ now }: { now: string }) {
   const selectedIndex = selected ? navList.findIndex((event) => event.id === selected.id) : -1;
   const filtersActive = tonight || weekend || freeOnly || !!area || !!genre || !!needle;
   const total = view === "events" ? visible.length : visiblePlaces.length;
+  const showTimeline = view === "events" && visible.length > 0;
+  const activeFilterKey = ([["tonight", tonight], ["weekend", weekend], ["free", freeOnly], ["area", !!area], ["genre", !!genre], ["search", !!needle]] as const)
+    .filter(([, on]) => on).map(([name]) => name).join(",");
+
+  useEffect(() => {
+    const timeline = timelineRef.current;
+    if (!showTimeline || !timeline || listViewed.current) return;
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      listViewed.current = true;
+      observer.disconnect();
+      const activeFilters = activeFilterKey ? activeFilterKey.split(",") as Array<FilterName | "search"> : [];
+      track("Event List Viewed", { count: visible.length, active_filters: activeFilters, active_filter_count: activeFilters.length });
+    });
+    observer.observe(timeline);
+    return () => observer.disconnect();
+  }, [showTimeline, visible.length, activeFilterKey]);
+
+  useEffect(() => {
+    if (!needle) return;
+    const id = window.setTimeout(() => track("Search Used", { query_length: needle.length }), 1000);
+    return () => window.clearTimeout(id);
+  }, [needle]);
 
   function jumpToDiscover() {
     discoverRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
@@ -184,10 +210,20 @@ export function CityPage({ now }: { now: string }) {
     setTonight(false); setWeekend(false); setFreeOnly(false); setArea(null); setGenre(null); setQuery("");
   }
 
+  function resetFilters() {
+    clearFilters();
+    track("Filter Applied", { filter: "reset", value: null });
+  }
+
+  function trackDetail(item: NightEvent, position: number | null) {
+    track("Event Detail Opened", { event_id: item.id, title: item.title, source: item.source, area: item.area, genre: item.category, is_free: isFree(item.price), kind: item.kind, position });
+  }
+
   function toggleTheme() {
     const next: ThemeName = readTheme() === "dark" ? "light" : "dark";
     try { localStorage.setItem(themeStorageKey, next); } catch { /* private mode */ }
     applyTheme(next);
+    track("Theme Toggled", { theme: next });
   }
 
   function openSearch() {
@@ -254,29 +290,29 @@ export function CityPage({ now }: { now: string }) {
               </div>
             )}
             <div className="filter-row" role="group" aria-label={view === "events" ? "Filter events" : "Filter places"}>
-              {view === "events" && <><Chip pressed={tonight} onClick={() => { setTonight(!tonight); setWeekend(false); }}>Tonight</Chip><Chip pressed={weekend} onClick={() => { setWeekend(!weekend); setTonight(false); }}>This weekend</Chip></>}
-              <FilterSelect label="Area" value={area} options={["Kuala Lumpur", "Selangor", ...areas.filter((item) => item !== "Kuala Lumpur" && item !== "Selangor")]} onChange={setArea} />
-              <FilterSelect label={view === "events" ? "Genre" : "Vibe"} value={genre} options={genres} onChange={setGenre} />
-              {view === "events" && <Chip pressed={freeOnly} onClick={() => setFreeOnly(!freeOnly)}>Free</Chip>}
-              {filtersActive && <button type="button" className="clear-filters" onClick={clearFilters}>Reset <X size={12} aria-hidden="true" /></button>}
+              {view === "events" && <><Chip pressed={tonight} onClick={() => { setTonight(!tonight); setWeekend(false); track("Filter Applied", { filter: "tonight", value: !tonight }); }}>Tonight</Chip><Chip pressed={weekend} onClick={() => { setWeekend(!weekend); setTonight(false); track("Filter Applied", { filter: "weekend", value: !weekend }); }}>This weekend</Chip></>}
+              <FilterSelect label="Area" value={area} options={["Kuala Lumpur", "Selangor", ...areas.filter((item) => item !== "Kuala Lumpur" && item !== "Selangor")]} onChange={(value) => { setArea(value); track("Filter Applied", { filter: "area", value }); }} />
+              <FilterSelect label={view === "events" ? "Genre" : "Vibe"} value={genre} options={genres} onChange={(value) => { setGenre(value); track("Filter Applied", { filter: "genre", value }); }} />
+              {view === "events" && <Chip pressed={freeOnly} onClick={() => { setFreeOnly(!freeOnly); track("Filter Applied", { filter: "free", value: !freeOnly }); }}>Free</Chip>}
+              {filtersActive && <button type="button" className="clear-filters" onClick={resetFilters}>Reset <X size={12} aria-hidden="true" /></button>}
             </div>
           </div>
 
           <p className="sr-only" aria-live="polite">{total} {view === "events" ? "events" : "places"} found</p>
-          {total === 0 ? <div className="empty-state"><Moon size={28} strokeWidth={1.3} aria-hidden="true" /><h3>No {view === "events" ? "nights" : "spots"} found</h3><p>Try another area, a different vibe, or a fresh search.</p><button type="button" className="pill" onClick={clearFilters}>Clear filters</button></div> : view === "events" ? (
-            <div className="event-timeline">
+          {total === 0 ? <div className="empty-state"><Moon size={28} strokeWidth={1.3} aria-hidden="true" /><h3>No {view === "events" ? "nights" : "spots"} found</h3><p>Try another area, a different vibe, or a fresh search.</p><button type="button" className="pill" onClick={resetFilters}>Clear filters</button></div> : view === "events" ? (
+            <div ref={timelineRef} className="event-timeline">
               <div className="timeline-line" aria-hidden="true" />
               {groups.map((group) => (
                 <section key={group.key} className="date-group" aria-label={`${group.date}, ${group.weekday}`}>
                   <div className="date-heading"><span className="timeline-dot" aria-hidden="true" /><h3>{group.date} <span>{group.weekday}</span></h3></div>
-                  <div className="date-events">{group.events.map((event) => <EventCard key={event.id} event={event} pressed={event.id === selectedId} onOpen={() => openListing(event.id)} />)}</div>
+                  <div className="date-events">{group.events.map((event) => <EventCard key={event.id} event={event} pressed={event.id === selectedId} onOpen={() => { openListing(event.id); trackDetail(event, visible.indexOf(event) + 1); }} />)}</div>
                 </section>
               ))}
             </div>
           ) : (
             <div className="places-list">
               <p className="places-intro">Good music. Great rooms. A few local favourites to start your night.</p>
-              {visiblePlaces.map((place) => <PlaceCard key={place.id} place={place} onOpen={() => openListing(`place-${place.id}`)} />)}
+              {visiblePlaces.map((place, index) => <PlaceCard key={place.id} place={place} onOpen={() => { openListing(`place-${place.id}`); trackDetail(placeEvent(place), index + 1); }} />)}
               <p className="places-note">An editorial shortlist. Check each venue’s latest programme before heading out.</p>
             </div>
           )}
@@ -301,12 +337,12 @@ export function CityPage({ now }: { now: string }) {
               <span><MapPin size={14} aria-hidden="true" /> KL &amp; Selangor <ArrowUpRight size={13} aria-hidden="true" /></span>
             </a>
             <div className="sidebar-section-heading"><h3>Places to know</h3><button type="button" onClick={() => { clearFilters(); selectView("places"); }}>View all <ArrowUpRight size={12} aria-hidden="true" /></button></div>
-            <div className="sidebar-places">{places.filter((place) => ["kyo", "iron-fairies", "locker-loft"].includes(place.id)).slice(0, 3).map((place) => <button type="button" key={place.id} className="sidebar-place" onClick={() => openListing(`place-${place.id}`)}><ListingCover image={place.image} name={place.name} className="sidebar-place-image" /><span><strong>{place.name}</strong><small>{place.category} · {place.area}</small></span><ArrowUpRight size={14} aria-hidden="true" /></button>)}</div>
+            <div className="sidebar-places">{places.filter((place) => ["kyo", "iron-fairies", "locker-loft"].includes(place.id)).slice(0, 3).map((place) => <button type="button" key={place.id} className="sidebar-place" onClick={() => { openListing(`place-${place.id}`); trackDetail(placeEvent(place), null); }}><ListingCover image={place.image} name={place.name} className="sidebar-place-image" /><span><strong>{place.name}</strong><small>{place.category} · {place.area}</small></span><ArrowUpRight size={14} aria-hidden="true" /></button>)}</div>
           </div>
         </aside>
       </main>
 
-      {selected && <DetailSheet event={selected} titleId={titleId} hasPrev={selectedIndex > 0} hasNext={selectedIndex >= 0 && selectedIndex < navList.length - 1} onPrev={() => selectedIndex > 0 && stepListing(navList[selectedIndex - 1].id)} onNext={() => selectedIndex >= 0 && selectedIndex < navList.length - 1 && stepListing(navList[selectedIndex + 1].id)} onClose={closeListing} socialLinks={selectedPlace ? [{ label: "Instagram", url: selectedPlace.instagram }, { label: "Threads", url: selectedPlace.threads }].filter((link): link is { label: string; url: string } => !!link.url) : undefined} />}
+      {selected && <DetailSheet event={selected} titleId={titleId} hasPrev={selectedIndex > 0} hasNext={selectedIndex >= 0 && selectedIndex < navList.length - 1} onPrev={() => { if (selectedIndex > 0) { stepListing(navList[selectedIndex - 1].id); trackDetail(navList[selectedIndex - 1], selectedIndex); } }} onNext={() => { if (selectedIndex >= 0 && selectedIndex < navList.length - 1) { stepListing(navList[selectedIndex + 1].id); trackDetail(navList[selectedIndex + 1], selectedIndex + 2); } }} onClose={closeListing} socialLinks={selectedPlace ? [{ label: "Instagram", url: selectedPlace.instagram }, { label: "Threads", url: selectedPlace.threads }].filter((link): link is { label: string; url: string } => !!link.url) : undefined} />}
     </>
   );
 }
